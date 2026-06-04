@@ -1,0 +1,111 @@
+---
+aid: lund
+name: Lund University
+description: >-
+  Lund University is a public research university in Lund, Sweden, founded in 1666
+  and ranked #74 in the QS World University Rankings 2025. Its public developer and
+  API footprint centers on the Lund University Libraries' research-output and
+  open-metadata services, principally Lund University Publications (LUP), which
+  exposes a JSON Search API, OAI-PMH harvesting, SRU/CQL search, an unAPI discovery
+  service, and RSS feeds. The Lund University Research Portal is an external
+  interface to the LUCRIS research information system built on Elsevier Pure.
+  Administrative, identity (SWAMID/SAML federation), and student-information
+  systems exist but are gated behind institutional affiliation rather than openly
+  self-service.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/lund/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Sweden
+  - Research
+  - Library
+  - Open Data
+  - Publications
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: lund:lup-search
+    name: Lund University Publications (LUP) Search API
+    description: >-
+      REST/JSON(P) search interface over the Lund University Publications
+      database, returning publication hits with total, size, start, and limit
+      paging parameters. No authentication required.
+    humanURL: https://lup.lub.lu.se/search/doc/api
+    baseURL: https://lup.lub.lu.se/search/publication
+    tags: [ Publications, Search, Library, Research, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://lup.lub.lu.se/search/doc/api
+  - aid: lund:lup-oai
+    name: Lund University Publications OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata-harvesting endpoint for fully or partially harvesting
+      Lund University publication metadata (Identify, ListMetadataFormats,
+      ListRecords). No authentication required.
+    humanURL: https://lup.lub.lu.se/search/doc/api
+    baseURL: https://lup.lub.lu.se/oai
+    tags: [ Publications, OAI-PMH, Harvesting, Library, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://lup.lub.lu.se/search/doc/api
+  - aid: lund:lup-sru
+    name: Lund University Publications SRU
+    description: >-
+      SRU 1.1 Search/Retrieve via URL service using CQL (Contextual Query
+      Language) for querying the LUP publication database. Scan and explain
+      operations are not supported; no authentication required.
+    humanURL: https://lup.lub.lu.se/search/doc/api
+    baseURL: https://lup.lub.lu.se/sru
+    tags: [ Publications, SRU, CQL, Search, Library ]
+    properties:
+      - type: Documentation
+        url: https://lup.lub.lu.se/search/doc/api
+  - aid: lund:lup-unapi
+    name: Lund University Publications unAPI
+    description: >-
+      unAPI 1 discovery service for retrieving alternate metadata formats of LUP
+      records. No authentication required.
+    humanURL: https://lup.lub.lu.se/search/doc/api
+    tags: [ Publications, unAPI, Discovery, Library, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://lup.lub.lu.se/search/doc/api
+  - aid: lund:research-portal
+    name: Lund University Research Portal (LUCRIS / Pure)
+    description: >-
+      Public external interface to the LUCRIS research information system, built
+      on Elsevier Pure, covering researchers, organisations, outputs, projects,
+      datasets, and activities. Lund documents that LUCRIS information can be
+      retrieved automatically via API or RSS for institutional reporters and web
+      editors; full public Pure API access is not openly self-service.
+    humanURL: https://portal.research.lu.se/
+    tags: [ Research, Pure, LUCRIS, Publications, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://www.staff.lu.se/research-and-education/research-support/lucris/research-portal
+common:
+  - type: Website
+    url: https://www.lunduniversity.lu.se/
+  - type: GitHub
+    url: https://github.com/lunduniversity
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/lund-university/
+  - type: DeveloperPortal
+    url: https://lup.lub.lu.se/search/doc/api
+  - type: Plans
+    url: plans/lund-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/lund-rate-limits.yml
+  - type: FinOps
+    url: finops/lund-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

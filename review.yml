@@ -1,0 +1,56 @@
+---
+name: Lund University
+description: Lund University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/lund/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      Lund University's strongest public API footprint is the Lund University
+      Libraries' Lund University Publications (LUP) service, which documents and
+      serves a JSON Search API, OAI-PMH, SRU/CQL, unAPI, and RSS feeds. The LUP
+      Search API JSON endpoint, the OAI-PMH endpoint at /oai, and the SRU
+      endpoint were all verified live (HTTP 200). The documented /search/oai and
+      /search/sru paths returned 404, so the working base URLs were corrected to
+      the /oai and /sru paths. The Research Portal (LUCRIS on Elsevier Pure)
+      resolves and is documented as offering API/RSS retrieval, but its Pure web
+      service OAI endpoint returned HTTP 500 and full public API access is not
+      openly self-service, so it is cataloged as a documented-but-gated property
+      rather than a confirmed open API. No fabricated endpoints; only
+      live-verified or vendor-documented interfaces are listed.
+    endpoints:
+      - url: https://lup.lub.lu.se/search/publication?q=dna&format=json
+        status: 200
+        note: LUP Search API JSON, verified live.
+      - url: https://lup.lub.lu.se/oai?verb=Identify
+        status: 200
+        note: LUP OAI-PMH endpoint, verified live (doc page lists /search/oai which 404s).
+      - url: https://lup.lub.lu.se/sru?version=1.1&operation=searchRetrieve&query=dna&maximumRecords=1
+        status: 200
+        note: LUP SRU/CQL endpoint, verified live.
+      - url: https://lup.lub.lu.se/search/oai?verb=Identify
+        status: 404
+        note: Documented OAI path no longer resolves; canonical is /oai.
+      - url: https://lup.lub.lu.se/search/sru?version=1.1&operation=searchRetrieve&query=dna
+        status: 404
+        note: Documented SRU path no longer resolves; canonical is /sru.
+      - url: https://lup.lub.lu.se/search/doc/api
+        status: 200
+        note: LUP API documentation page.
+      - url: https://portal.research.lu.se/
+        status: 200
+        note: Research Portal (LUCRIS / Elsevier Pure) external interface.
+      - url: https://portal.research.lu.se/ws/oai?verb=Identify&metadataPrefix=oai_dc
+        status: 500
+        note: Pure web service OAI not reliably public; gated.
+      - url: https://www.lunduniversity.lu.se/
+        status: 200
+        note: Official institutional website.
+      - url: https://github.com/lunduniversity
+        status: 200
+        note: Official GitHub org; education/teaching repositories, no API SDKs.
+      - url: https://www.linkedin.com/school/lund-university/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn bot-block, page exists in browser.
