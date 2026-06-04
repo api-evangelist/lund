@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "@vocab": "https://lup.lub.lu.se/ns/",
+    "schema": "https://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "bibo": "http://purl.org/ontology/bibo/",
+
+    "University": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "foundingDate": "schema:foundingDate",
+
+    "Publication": "schema:ScholarlyArticle",
+    "publication": { "@id": "schema:hasPart", "@type": "@id" },
+    "hits": "schema:itemListElement",
+    "total": "schema:totalItems",
+
+    "_id": "schema:identifier",
+    "uuid": "schema:identifier",
+    "mainTitle": "schema:headline",
+    "title": "schema:name",
+    "subtitle": "schema:alternativeHeadline",
+    "abstract": "schema:abstract",
+    "keyword": "schema:keywords",
+    "subject": "schema:about",
+    "publishingYear": "schema:datePublished",
+    "publishingDate": "schema:datePublished",
+    "language": "schema:inLanguage",
+    "portalUrl": { "@id": "schema:url", "@type": "@id" },
+    "openAccess": "schema:isAccessibleForFree",
+    "peerReviewed": "bibo:peerReviewed",
+
+    "doi": "bibo:doi",
+    "issn": "bibo:issn",
+    "isbn": "bibo:isbn",
+    "volume": "bibo:volume",
+    "issue": "bibo:issue",
+
+    "author": { "@id": "schema:author", "@type": "@id" },
+    "editor": { "@id": "schema:editor", "@type": "@id" },
+    "fullName": "schema:name",
+    "givenName": "schema:givenName",
+    "surname": "schema:familyName",
+    "orcid": { "@id": "schema:identifier", "@type": "@id" },
+
+    "publisher": { "@id": "schema:publisher", "@type": "@id" },
+    "affiliation": { "@id": "schema:affiliation", "@type": "@id" },
+    "organizationNumber": "schema:identifier"
+  },
+  "@type": "University",
+  "name": "Lund University",
+  "url": "https://www.lunduniversity.lu.se/",
+  "foundingDate": "1666"
+}

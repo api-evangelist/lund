@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lup.lub.lu.se/search/schema/searchresult.json",
+  "title": "SearchResult",
+  "description": "A page of publication search results from the LUP Search API. Derived from observed live responses of https://lup.lub.lu.se/search/publication?format=json.",
+  "type": "object",
+  "required": ["total", "size", "start", "limit", "hits"],
+  "properties": {
+    "total": {
+      "description": "total number of publications matching the query",
+      "type": "integer",
+      "minimum": 0
+    },
+    "size": {
+      "description": "number of hits returned in this page",
+      "type": "integer",
+      "minimum": 0
+    },
+    "start": {
+      "description": "zero-based offset of the first returned hit",
+      "type": "integer",
+      "minimum": 0
+    },
+    "limit": {
+      "description": "maximum number of hits requested per page",
+      "type": "integer",
+      "minimum": 0
+    },
+    "hits": {
+      "description": "list of publication hits",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "uuid": { "type": "string" },
+          "mainTitle": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "type": { "type": "string" },
+          "documentType": { "type": "string" },
+          "lupTypeFull": { "type": "string" },
+          "publishingYear": { "type": "string" },
+          "publishingDate": { "type": "string" },
+          "openAccess": { "type": "integer" },
+          "peerReviewed": { "type": "boolean" },
+          "issn": { "type": "array", "items": { "type": "string" } },
+          "language": { "type": "array", "items": { "type": "string" } },
+          "subject": { "type": "array", "items": { "type": "string" } },
+          "portalUrl": { "type": "string", "format": "uri" },
+          "totalNumberOfAuthors": { "type": "integer" },
+          "author": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fullName": { "type": "string" },
+                "givenName": { "type": "string" },
+                "surname": { "type": "string" },
+                "uuid": { "type": "string" },
+                "luLdapId": { "type": "string" },
+                "orcid": { "type": "string" },
+                "role": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

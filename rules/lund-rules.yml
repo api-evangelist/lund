@@ -1,0 +1,60 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://lup.lub.lu.se/search/doc/api
+rules:
+  lund-info-contact:
+    description: API info object should include a contact pointing at LUP documentation.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  lund-info-description:
+    description: API info object must have a description.
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  lund-server-lup-host:
+    description: Servers should target the LUP search host (lup.lub.lu.se).
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "lup\\.lub\\.lu\\.se"
+  lund-operation-operationid:
+    description: Every operation must declare an operationId.
+    severity: error
+    given: $.paths[*][get,post]
+    then:
+      field: operationId
+      function: truthy
+  lund-search-format-enum:
+    description: A format parameter should constrain values to the documented set (json, jsonp).
+    severity: info
+    given: $.paths[*].get.parameters[?(@.name=='format')].schema
+    then:
+      field: enum
+      function: truthy
+  lund-paging-parameters:
+    description: List operations should expose start and limit paging parameters as seen in LUP responses.
+    severity: info
+    given: $.paths['/publication'].get.parameters[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(q|format|callback|sort|start|limit)$"
+  lund-publication-id-required:
+    description: The Publication schema must require the LUP record identity fields.
+    severity: warn
+    given: $.components.schemas.Publication.required
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            const: _id

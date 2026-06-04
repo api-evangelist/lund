@@ -1,0 +1,202 @@
+{
+  "start": 0,
+  "total": 4463,
+  "limit": 1,
+  "size": 1,
+  "hits": [
+    {
+      "_id": "484c41bb-8bd5-4469-9630-30c198fd6db7",
+      "uuid": "484c41bb-8bd5-4469-9630-30c198fd6db7",
+      "mainTitle": "Associations of rDNA copy numbers and global DNA methylation with myocardial infarction",
+      "type": {
+        "typeName": "journalArticle"
+      },
+      "documentTypeFull": "contributiontojournal/article",
+      "lupTypeFull": "journalArticle/original",
+      "publishingYear": "2026",
+      "publishingDate": "2026",
+      "publicationStatus": "published",
+      "peerReviewed": "1",
+      "openAccess": 1,
+      "issn": [
+        "2297-055X"
+      ],
+      "language": [
+        {
+          "name": [
+            {
+              "lang": "eng",
+              "text": "English"
+            },
+            {
+              "lang": "swe",
+              "text": "engelska"
+            }
+          ],
+          "languageCode": "eng"
+        }
+      ],
+      "subject": [
+        {
+          "name": [
+            {
+              "text": "Cardiology and Cardiovascular Disease",
+              "lang": "eng"
+            },
+            {
+              "lang": "swe",
+              "text": "Kardiologi och kardiovaskulära sjukdomar"
+            }
+          ],
+          "subjectUri": "3/302/30206",
+          "subjectId": "30206"
+        },
+        {
+          "name": [
+            {
+              "lang": "eng",
+              "text": "Medical Genetics and Genomics (including Gene Therapy)"
+            },
+            {
+              "lang": "swe",
+              "text": "Medicinsk genetik och genomik (Här ingår: Genterapi)"
+            }
+          ],
+          "subjectUri": "3/301/30107",
+          "subjectId": "30107"
+        }
+      ],
+      "publication": "Frontiers in Cardiovascular Medicine",
+      "volume": "13",
+      "articleNumber": "1740048",
+      "pagesStart": "1",
+      "pagesEnd": "8",
+      "portalUrl": "https://portal.research.lu.se/en/publications/484c41bb-8bd5-4469-9630-30c198fd6db7",
+      "totalNumberOfAuthors": "5",
+      "first_author": {
+        "surname": "Wang",
+        "role": "author",
+        "affiliation": [
+          {
+            "organizationNumber": "v1001347",
+            "name": [
+              {
+                "text": "LUCC: Lund University Cancer Centre",
+                "lang": "eng"
+              },
+              {
+                "text": "LUCC: Lunds universitets cancercentrum",
+                "lang": "swe"
+              }
+            ],
+            "isExternal": 0
+          },
+          {
+            "isExternal": 0,
+            "name": [
+              {
+                "text": "Family Medicine and Clinical Epidemiology",
+                "lang": "eng"
+              },
+              {
+                "lang": "swe",
+                "text": "Allmänmedicin och klinisk epidemiologi"
+              }
+            ],
+            "organizationNumber": "v1000480"
+          }
+        ],
+        "luLdapId": "med-xwg",
+        "uuid": "140a3156-79fe-434a-bed7-6883105f25ed",
+        "givenName": "Xiao",
+        "fullName": "Wang, Xiao"
+      },
+      "last_author": {
+        "role": "author",
+        "fullName": "Sundquist, Kristina",
+        "givenName": "Kristina",
+        "surname": "Sundquist",
+        "affiliation": [
+          {
+            "isExternal": 0,
+            "organizationNumber": "v1001347",
+            "name": [
+              {
+                "text": "LUCC: Lund University Cancer Centre",
+                "lang": "eng"
+              },
+              {
+                "text": "LUCC: Lunds universitets cancercentrum",
+                "lang": "swe"
+              }
+            ]
+          },
+          {
+            "name": [
+              {
+                "text": "Family Medicine and Clinical Epidemiology",
+                "lang": "eng"
+              },
+              {
+                "text": "Allmänmedicin och klinisk epidemiologi",
+                "lang": "swe"
+              }
+            ],
+            "organizationNumber": "v1000480",
+            "isExternal": 0
+          },
+          {
+            "isExternal": 0,
+            "name": [
+              {
+                "lang": "eng",
+                "text": "EpiHealth: Epidemiology for Health"
+              },
+              {
+                "lang": "swe",
+                "text": "EpiHealth: Epidemiology for Health"
+              }
+            ],
+            "organizationNumber": "v1001239"
+          },
+          {
+            "type": "medical",
+            "isExternal": 1,
+            "name": [
+              {
+                "lang": "eng",
+                "text": "Skåne University Hospital"
+              },
+              {
+                "lang": "swe",
+                "text": "Skåne University Hospital"
+              }
+            ],
+            "countryCode": "se"
+          }
+        ],
+        "uuid": "84728074-b32a-4012-b33a-46aa96fd989f",
+        "luLdapId": "med-ksq"
+      },
+      "author": [
+        {
+          "fullName": "Wang, Xiao",
+          "givenName": "Xiao",
+          "surname": "Wang",
+          "uuid": "140a3156-79fe-434a-bed7-6883105f25ed",
+          "luLdapId": "med-xwg",
+          "role": "author"
+        },
+        {
+          "fullName": "Memon, Ashfaque A",
+          "givenName": "Ashfaque A",
+          "surname": "Memon",
+          "uuid": "a1d99da2-1cb5-41e8-9a67-2fb05491ccf3",
+          "luLdapId": "med-aqm",
+          "orcid": "0000-0002-1081-3553",
+          "role": "author"
+        }
+      ]
+    }
+  ]
+}

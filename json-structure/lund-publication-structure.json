@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://lup.lub.lu.se/structure/publication.json",
+  "name": "Publication",
+  "description": "JSON Structure for a Lund University Publications (LUP) record. Derived from the published LUP publication JSON Schema (https://lup.lub.lu.se/search/schema/publication.json).",
+  "type": "object",
+  "properties": {
+    "_id": { "type": "string", "description": "unique publication id" },
+    "type": {
+      "type": "string",
+      "description": "type of publication",
+      "enum": ["book", "bookChapter", "bookEditor", "conference", "dissertation", "journalArticle", "licentiateThesis", "misc"]
+    },
+    "classification": {
+      "type": "string",
+      "description": "UGent classification code",
+      "enum": ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "C1", "C3", "D1", "D2", "P1", "V", "U"]
+    },
+    "status": {
+      "type": "string",
+      "description": "record status",
+      "enum": ["unsubmitted", "submitted", "returned", "public", "pdeleted"]
+    },
+    "external": { "type": "int32", "description": "1 if published while no author was at LU, else 0" },
+    "title": { "type": "string", "description": "publication title" },
+    "abstract": { "type": "array", "items": { "type": "string" } },
+    "keyword": { "type": "array", "items": { "type": "string" } },
+    "year": { "type": "string", "description": "year of publication (YYYY)" },
+    "language": { "type": "array", "items": { "type": "string" } },
+    "subject": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "array", "items": { "$ref": "#/definitions/Person" } },
+    "editor": { "type": "array", "items": { "$ref": "#/definitions/Person" } },
+    "publisher": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "location": { "type": "string" }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "short_title": { "type": "string" }
+      }
+    },
+    "volume": { "type": "string" },
+    "issue": { "type": "string" },
+    "isbn": { "type": "array", "items": { "type": "string" } },
+    "issn": { "type": "array", "items": { "type": "string" } },
+    "doi": { "type": "array", "items": { "type": "string" } },
+    "file": { "type": "array", "items": { "$ref": "#/definitions/File" } }
+  },
+  "required": ["_id", "type", "classification", "status", "external", "title"],
+  "definitions": {
+    "Person": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "name": { "type": "string" },
+        "name_last_first": { "type": "string" },
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" }
+      }
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "content_type": { "type": "string" },
+        "name": { "type": "string" },
+        "access": {
+          "type": "string",
+          "enum": ["openAccess", "lu", "admin"]
+        },
+        "size": { "type": "int64" }
+      },
+      "required": ["_id", "content_type", "name", "access"]
+    }
+  }
+}

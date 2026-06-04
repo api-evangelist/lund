@@ -42,6 +42,22 @@ apis:
     properties:
       - type: Documentation
         url: https://lup.lub.lu.se/search/doc/api
+      - type: OpenAPI
+        url: openapi/lund-lup-search.yaml
+      - type: JSONSchema
+        url: json-schema/lund-publication-schema.json
+      - type: JSONSchema
+        url: json-schema/lund-searchresult-schema.json
+      - type: x-json-structure
+        url: json-structure/lund-publication-structure.json
+      - type: x-example
+        url: examples/lund-searchpublications-example.json
+      - type: x-spectral-rules
+        url: rules/lund-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/lund-vocabulary.yml
+      - type: x-json-ld-context
+        url: json-ld/lund-context.jsonld
   - aid: lund:lup-oai
     name: Lund University Publications OAI-PMH
     description: >-

@@ -1,0 +1,73 @@
+vocabulary:
+  name: Lund University Publications (LUP) Vocabulary
+  description: >-
+    Controlled terms observed in the Lund University Publications (LUP) Search
+    API and its published publication JSON Schema. Definitions reflect the LUP
+    documentation, schema field descriptions, and live JSON responses; no terms
+    are invented beyond what the API exposes.
+  version: '1.0'
+  source: https://lup.lub.lu.se/search/doc/api
+  terms:
+    - term: publication
+      definition: A research output record in the Lund University Publications database.
+      tags: [object, research, library]
+    - term: hit
+      definition: A single publication record returned within a search result page.
+      tags: [search, response]
+    - term: total
+      definition: Total number of publications matching a query, independent of paging.
+      tags: [paging, search]
+    - term: size
+      definition: Number of hits actually returned in the current search result page.
+      tags: [paging, search]
+    - term: start
+      definition: Zero-based offset of the first returned hit, used for pagination.
+      tags: [paging, search]
+    - term: limit
+      definition: Maximum number of hits requested per page.
+      tags: [paging, search]
+    - term: classification
+      definition: UGent classification code of the publication (e.g. A1, B1, P1, U).
+      tags: [taxonomy, metadata]
+    - term: status
+      definition: Record status; the public API only returns records with status 'public'.
+      tags: [workflow, access]
+    - term: external
+      definition: Flag (0/1) indicating the publication was authored while no author was employed at LU.
+      tags: [affiliation, flag]
+    - term: openAccess
+      definition: Indicator that the publication is available under open access.
+      tags: [access, open-data]
+    - term: peerReviewed
+      definition: Indicator that the publication was peer reviewed.
+      tags: [quality, metadata]
+    - term: doiInfo
+      definition: Digital Object Identifier information associated with the publication.
+      tags: [identifier, citation]
+    - term: issn
+      definition: International Standard Serial Number(s) of the host serial.
+      tags: [identifier, serial]
+    - term: isbn
+      definition: International Standard Book Number(s) of the publication.
+      tags: [identifier, book]
+    - term: orcid
+      definition: ORCID identifier of an author.
+      tags: [identifier, person]
+    - term: luLdapId
+      definition: Internal Lund University LDAP identifier for a person.
+      tags: [identifier, person]
+    - term: affiliation
+      definition: Academic organization a publication or person is associated with.
+      tags: [organization, person]
+    - term: subject
+      definition: Subject category classification of the publication (e.g. Medicine and Health Sciences).
+      tags: [taxonomy, metadata]
+    - term: jcr
+      definition: Journal Citation Reports metrics for the journal in the publication year.
+      tags: [metrics, journal]
+    - term: portalUrl
+      definition: Public URL of the publication record in the LUP/research portal.
+      tags: [link, metadata]
+    - term: lupType
+      definition: LUP-specific publication type code, with lupTypeFull as its human label.
+      tags: [taxonomy, metadata]

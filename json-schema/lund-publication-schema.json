@@ -1,0 +1,675 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Publication",
+  "description": "A LU publication",
+  "required": ["_id", "type", "classification", "status", "external", "title"],
+  "properties": {
+    "_id": {
+      "description": "unique publication id",
+      "type": "string"
+    },
+    "type": {
+      "description": "type of publication",
+      "enum": ["book", "bookChapter", "bookEditor", "conference", "dissertation", "journalArticle", "licentiateThesis", "misc"]
+    },
+    "classification": {
+      "description": "UGent classification code of publication",
+      "enum": ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "C1", "C3", "D1", "D2", "P1", "V", "U"]
+    },
+    "article_type": {
+      "description": "type of journal article",
+      "enum": ["letterNote", "original", "proceedingsPaper", "review"]
+    },
+    "dissertation_type": {
+      "description": "type of dissertation",
+      "enum": ["monograph", "composite"]
+    },
+    "misc_type": {
+      "description": "type of miscellaneous publication",
+      "enum": [
+        "bibliographicalItem",
+        "bibliography",
+        "biographicalItem",
+        "bookReview",
+        "correction",
+        "editorialMaterial",
+        "exhibitionReview",
+        "lemma",
+        "newsArticle",
+        "report",
+        "textEdition",
+        "theatreReview",
+        "other"
+      ]
+    },
+    "conference_type": {
+      "description": "type of conference publication (legacy)",
+      "enum": ["conferencePaper", "meetingAbstract", "proceedingsPaper"]
+    },
+    "status": {
+      "description": "record status (the public api only returns records with status 'public')",
+      "enum": ["unsubmitted", "submitted", "returned", "public", "pdeleted"]
+    },
+    "publication_status": {
+      "description": "publication status of the publication",
+      "enum": ["unpublished", "submitted", "inpress", "published"]
+    },
+    "external": {
+      "description": "was the publication published while none of the authors were employed at LU",
+      "enum": [0, 1]
+    },
+    "date_created": {
+      "description": "date and time when the record was created",
+      "$ref": "#/definitions/datetime"
+    },
+    "date_updated": {
+      "description": "date and time when the record was last changed",
+      "$ref": "#/definitions/datetime"
+    },
+    "date_submitted": {
+      "description": "date and time when the record was submitted",
+      "$ref": "#/definitions/datetime"
+    },
+    "date_approved": {
+      "description": "date and time when the record was approved",
+      "$ref": "#/definitions/datetime"
+    },
+    "created_by": {
+      "description": "person who created the record",
+      "$ref": "#/definitions/person"
+    },
+    "last_reviewed_by": {
+      "description": "person who last reviewed the record",
+      "$ref": "#/definitions/person"
+    },
+    "copyright_statement": {
+      "description": "copyright statement",
+      "type": "string"
+    },
+    "affiliation": {
+      "description": "list of academic organizations the publication is output of",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "$ref": "#/definitions/affiliation"
+      }
+    },
+    "language": {
+      "description": "list of ISO639-2 language codes",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 3
+      }
+    },
+    "subject": {
+      "description": "list of subject categories of the publication",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "enum": [
+          "Agriculture and Food Sciences",
+          "Arts and Architecture",
+          "Biology and Life Sciences",
+          "Business and Economics",
+          "Chemistry",
+          "Cultural Sciences",
+          "Earth and Environmental Sciences",
+          "General Works",
+          "History and Archaeology",
+          "Languages and Literatures",
+          "Law and Political Science",
+          "Mathematics and Statistics",
+          "Medicine and Health Sciences",
+          "Performing Arts",
+          "Philosophy and Religion",
+          "Physics and Astronomy",
+          "Science General",
+          "Social Sciences",
+          "Technology and Engineering",
+          "Veterinary Sciences"
+        ]
+      }
+    },
+    "keyword": {
+      "description": "list of keywords",
+      "type": "array",
+      "minItems": 1,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "title": {
+      "description": "publication title",
+      "type": "string"
+    },
+    "alternative_title": {
+      "description": "list of alternative publication titles",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "abstract": {
+      "description": "list of summaries of the contents of the publication",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "year": {
+      "description": "year of publication",
+      "$ref": "#/definitions/year"
+    },
+    "author": {
+      "description": "list of publication authors",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "editor": {
+      "description": "list of editors",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "promoter": {
+      "description": "list of promoters",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "defense": {
+      "description": "dissertation defense info",
+      "properties": {
+        "date": {
+          "description": "date and hour of defense",
+          "$ref": "#/definitions/datehour"
+        },
+        "location": {
+          "description": "venue of defense (campus, auditorium, room, ...)",
+          "type": "string"
+        }
+      }
+    },
+    "parent": {
+      "description": "host (journal, book, ...) the publication appeared in",
+      "properties": {
+        "title": {
+          "description": "host title",
+          "type": "string"
+        },
+        "short_title": {
+          "description": "host abbreviated title",
+          "type": "string"
+        }
+      }
+    },
+    "series_title": {
+      "description": "title of the series the book chapter appeared in",
+      "type": "string"
+    },
+    "publisher": {
+      "description": "publisher info",
+      "properties": {
+        "location": {
+          "description": "place of publication",
+          "type": "string"
+        },
+        "name": {
+          "description": "name of publisher",
+          "type": "string"
+        }
+      }
+    },
+    "conference": {
+      "description": "info about the conference the publication is related to",
+      "properties": {
+        "name": {
+          "description": "name of the conference",
+          "type": "string"
+        },
+        "location": {
+          "description": "venue of the conference",
+          "type": "string"
+        },
+        "organizer": {
+          "description": "name of the organizer of the conference",
+          "type": "string"
+        },
+        "start_date": {
+          "description": "start date of the conference",
+          "type": "string"
+        },
+        "end_date": {
+          "description": "end date of the conference",
+          "type": "string"
+        }
+      }
+    },
+    "project": {
+      "description": "list of projects the publication is related to",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "properties": {
+          "_id": {
+            "description": "unique project id",
+            "type": "string"
+          },
+          "title": {
+            "description": "project title",
+            "type": "string"
+          },
+          "abstract": {
+            "description": "description of the project",
+            "type": "string"
+          },
+          "start_date": {
+            "description": "start date of the project",
+            "type": "string"
+          },
+          "end_date": {
+            "description": "end date of the project",
+            "type": "string"
+          },
+          "ugent_id": {
+            "description": "list of LU person ids related to the project",
+            "$ref": "#/definitions/ugent_id"
+          },
+          "eu_id": {
+            "description": "EU reference id of the project",
+            "type": "string"
+          },
+          "eu_acronym": {
+            "description": "EU acronym of the project",
+            "type": "string"
+          },
+          "eu_framework_programme": {
+            "description": "EU framework programme of the project",
+            "type": "string"
+          },
+          "eu_call_id": {
+            "description": "EU call id of the project",
+            "type": "string"
+          }
+        },
+        "required": ["_id", "title", "start_date", "end_date"]
+      }
+    },
+    "page": {
+      "description": "page info",
+      "properties": {
+        "count": {
+          "description": "total number of pages",
+          "type": "string"
+        },
+        "first": {
+          "description": "first page",
+          "type": "string"
+        },
+        "last": {
+          "description": "last page",
+          "type": "string"
+        }
+      }
+    },
+    "volume": {
+      "description": "volume number",
+      "type": "string"
+    },
+    "issue": {
+      "description": "issue number",
+      "type": "string"
+    },
+    "issue_title": {
+      "description": "special issue title",
+      "type": "string"
+    },
+    "article_number": {
+      "description": "article number",
+      "type": "string"
+    },
+    "edition": {
+      "description": "edition",
+      "type": "string"
+    },
+    "isbn": {
+      "description": "list of ISBN identifiers",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "issn": {
+      "description": "list of ISSN identifiers",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "doi": {
+      "description": "list of DOI identifiers",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "wos_type": {
+      "description": "Web of Science type of the publication",
+      "enum": [
+        "Article",
+        "Proceedings Paper",
+        "Review",
+        "Meeting Abstract",
+        "Book Review",
+        "Letter",
+        "Editorial Material",
+        "Conference Paper",
+        "Note",
+        "Other"
+      ]
+    },
+    "wos_id": {
+      "description": "Web of Science id of the publication",
+      "type": "string"
+    },
+    "vabb_type": {
+      "description": "type of the publication in the VABB-SHW database",
+      "enum": [
+        "VABB-1",
+        "VABB-2",
+        "VABB-3",
+        "VABB-4",
+        "VABB-5"
+      ]
+    },
+    "vabb_id": {
+      "description": "id of the publication in the VABB-SHW database",
+      "type": "string"
+    },
+    "vabb_approved": {
+      "description": "is the publication approved by the VABB authoritative panel",
+      "enum": [0, 1]
+    },
+    "alternative_location": {
+      "description": "List of links to alternative locations where the publication is also available",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "properties": {
+          "title": {
+            "description": "link title",
+            "type": "string"
+          },
+          "description": {
+            "description": "description of the file",
+            "type": "string"
+          },
+          "url": {
+            "description": "link URL",
+            "type": "string",
+            "format": "uri"
+          },
+          "access": {
+            "description": "link access level",
+            "enum": ["open", "restricted"]
+          },
+          "content_type": {
+            "description": "internet media type of the link",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "file": {
+      "description": "list of files containing the full-text of the publication or other additional data",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "properties": {
+          "_id": {
+            "description": "unique file id",
+            "type": "string"
+          },
+          "content_type": {
+            "description": "internet media type of the file",
+            "type": "string"
+          },
+          "name": {
+            "description": "filename",
+            "type": "string"
+          },
+          "description": {
+            "description": "description of the file",
+            "type": "string"
+          },
+          "access": {
+            "$ref": "#/definitions/access"
+          },
+          "change": {
+            "description": "upcoming change in the file access level",
+            "properties": {
+              "true": {
+                "description": "date of upcoming change",
+                "$ref": "#/definitions/date"
+              },
+              "to": {
+                "$ref": "#/definitions/access"
+              }
+            }
+          },
+          "size": {
+            "description": "filesize in bytes",
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": ["_id", "content_type", "name", "access"]
+      }
+    },
+    "jcr": {
+      "description": "Journal Citation Reports (JCR) info for the publication year of the journal the publication appeared in",
+      "properties": {
+        "category_vigintile": {
+          "description": "best quartile distribution based on impact factor rank in a subject category for the journal",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "category_decile": {
+          "description": "best decile distribution based on impact factor rank in a subject category for the journal",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "category_quartile": {
+          "description": "best quartile distribution based on impact factor rank in a subject category for the journal",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "total_cites": {
+          "description": "total cites indicate the total number of times that each journal has been cited by all journals included in the database within the current JCR year",
+          "type": "integer",
+          "minimum": 0
+        },
+        "immediacy_index": {
+          "description": "frequency the average article from a journal is cited within the same year as publication",
+          "type": "number",
+          "minimum": 0
+        },
+        "impact_factor": {
+          "description": "frequency the average article from a journal is cited in a particular year",
+          "type": "number",
+          "minimum": 0
+        },
+        "impact_factor_5year": {
+          "type": "number",
+          "minimum": 0
+        },
+        "eigenfactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "prev_impact_factor": {
+          "description": "impact factor for the previous JCR year",
+          "type": "number",
+          "minimum": 0
+        },
+        "prev_category_quartile": {
+          "description": "category quartile for the previous JCR year",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        }
+      }
+    },
+    "source": {
+      "description": "provenance info of an imported record",
+      "properties": {
+        "db": {
+          "description": "database the record was imported from",
+          "type": "string"
+        },
+        "id": {
+          "description": "source record id",
+          "type": "string"
+        },
+        "record": {
+          "description": "source record metadata",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "year": {
+      "type": "string",
+      "pattern": "^\\d{4}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "datehour": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}$"
+    },
+    "datetime": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}$"
+    },
+    "ugent_id": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "type": "string",
+        "pattern": "^\\d{12}$"
+      }
+    },
+    "person": {
+      "properties": {
+        "_id": {
+          "description": "unique person id",
+          "type": "string"
+        },
+        "ugent_id": {
+          "description": "list of LU person ids",
+          "$ref": "#/definitions/ugent_id"
+        },
+        "name": {
+          "description": "full name, first name first",
+          "type": "string"
+        },
+        "name_last_first": {
+          "description": "full name, last name first",
+          "type": "string"
+        },
+        "first_name": {
+          "description": "first name",
+          "type": "string"
+        },
+        "last_name": {
+          "description": "last name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "list of academic affiliations of the person",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "additionalItems": false,
+          "items": {
+            "$ref": "#/definitions/affiliation"
+          }
+        }
+      }
+    },
+    "affiliation": {
+      "properties": {
+        "ugent_id": {
+          "description": "LU organization id",
+          "type": "string"
+        },
+        "path": {
+          "description": "list of LU parent organization ids",
+          "properties": {
+            "ugent_id": {
+              "description": "LU organization id",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "access": {
+      "description": "file access level",
+      "enum": ["openAccess", "lu", "admin"]
+    }
+  }
+}
