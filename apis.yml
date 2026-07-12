@@ -106,6 +106,10 @@ apis:
       - type: Documentation
         url: https://www.staff.lu.se/research-and-education/research-support/lucris/research-portal
 common:
+  - type: VulnerabilityDisclosure
+    url: security/lund-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/lund-domain-security.yml
   - type: Website
     url: https://www.lunduniversity.lu.se/
   - type: GitHub
