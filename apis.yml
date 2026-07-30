@@ -13,9 +13,21 @@ description: >-
   systems exist but are gated behind institutional affiliation rather than openly
   self-service.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lund.png
 url: https://raw.githubusercontent.com/api-evangelist/lund/refs/heads/main/apis.yml
 tags:
   - Education
@@ -30,81 +42,96 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: lund:lup-search
-    name: Lund University Publications (LUP) Search API
-    description: >-
-      REST/JSON(P) search interface over the Lund University Publications
-      database, returning publication hits with total, size, start, and limit
-      paging parameters. No authentication required.
-    humanURL: https://lup.lub.lu.se/search/doc/api
-    baseURL: https://lup.lub.lu.se/search/publication
-    tags: [ Publications, Search, Library, Research, Open Data ]
-    properties:
-      - type: Documentation
-        url: https://lup.lub.lu.se/search/doc/api
-      - type: OpenAPI
-        url: openapi/lund-lup-search.yaml
-      - type: JSONSchema
-        url: json-schema/lund-publication-schema.json
-      - type: JSONSchema
-        url: json-schema/lund-searchresult-schema.json
-      - type: x-json-structure
-        url: json-structure/lund-publication-structure.json
-      - type: x-example
-        url: examples/lund-searchpublications-example.json
-      - type: x-spectral-rules
-        url: rules/lund-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/lund-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/lund-context.jsonld
-  - aid: lund:lup-oai
-    name: Lund University Publications OAI-PMH
-    description: >-
-      OAI-PMH 2.0 metadata-harvesting endpoint for fully or partially harvesting
-      Lund University publication metadata (Identify, ListMetadataFormats,
-      ListRecords). No authentication required.
-    humanURL: https://lup.lub.lu.se/search/doc/api
-    baseURL: https://lup.lub.lu.se/oai
-    tags: [ Publications, OAI-PMH, Harvesting, Library, Metadata ]
-    properties:
-      - type: Documentation
-        url: https://lup.lub.lu.se/search/doc/api
-  - aid: lund:lup-sru
-    name: Lund University Publications SRU
-    description: >-
-      SRU 1.1 Search/Retrieve via URL service using CQL (Contextual Query
-      Language) for querying the LUP publication database. Scan and explain
-      operations are not supported; no authentication required.
-    humanURL: https://lup.lub.lu.se/search/doc/api
-    baseURL: https://lup.lub.lu.se/sru
-    tags: [ Publications, SRU, CQL, Search, Library ]
-    properties:
-      - type: Documentation
-        url: https://lup.lub.lu.se/search/doc/api
-  - aid: lund:lup-unapi
-    name: Lund University Publications unAPI
-    description: >-
-      unAPI 1 discovery service for retrieving alternate metadata formats of LUP
-      records. No authentication required.
-    humanURL: https://lup.lub.lu.se/search/doc/api
-    tags: [ Publications, unAPI, Discovery, Library, Metadata ]
-    properties:
-      - type: Documentation
-        url: https://lup.lub.lu.se/search/doc/api
-  - aid: lund:research-portal
-    name: Lund University Research Portal (LUCRIS / Pure)
-    description: >-
-      Public external interface to the LUCRIS research information system, built
-      on Elsevier Pure, covering researchers, organisations, outputs, projects,
-      datasets, and activities. Lund documents that LUCRIS information can be
-      retrieved automatically via API or RSS for institutional reporters and web
-      editors; full public Pure API access is not openly self-service.
-    humanURL: https://portal.research.lu.se/
-    tags: [ Research, Pure, LUCRIS, Publications, Metadata ]
-    properties:
-      - type: Documentation
-        url: https://www.staff.lu.se/research-and-education/research-support/lucris/research-portal
+- aid: lund:lup-oai
+  name: Lund University Publications OAI-PMH
+  description: >-
+    OAI-PMH 2.0 metadata-harvesting endpoint for fully or partially harvesting Lund University publication
+    metadata (Identify, ListMetadataFormats, ListRecords). No authentication required.
+  humanURL: https://lup.lub.lu.se/search/doc/api
+  baseURL: https://lup.lub.lu.se/oai
+  tags:
+  - Publications
+  - OAI-PMH
+  - Harvesting
+  - Library
+  - Metadata
+  properties:
+  - type: Documentation
+    url: https://lup.lub.lu.se/search/doc/api
+- aid: lund:lup-sru
+  name: Lund University Publications SRU
+  description: >-
+    SRU 1.1 Search/Retrieve via URL service using CQL (Contextual Query Language) for querying the LUP
+    publication database. Scan and explain operations are not supported; no authentication required.
+  humanURL: https://lup.lub.lu.se/search/doc/api
+  baseURL: https://lup.lub.lu.se/sru
+  tags:
+  - Publications
+  - SRU
+  - CQL
+  - Search
+  - Library
+  properties:
+  - type: Documentation
+    url: https://lup.lub.lu.se/search/doc/api
+- aid: lund:lup-unapi
+  name: Lund University Publications unAPI
+  description: >-
+    unAPI 1 discovery service for retrieving alternate metadata formats of LUP records. No authentication
+    required.
+  humanURL: https://lup.lub.lu.se/search/doc/api
+  tags:
+  - Publications
+  - unAPI
+  - Discovery
+  - Library
+  - Metadata
+  properties:
+  - type: Documentation
+    url: https://lup.lub.lu.se/search/doc/api
+- aid: lund:research-portal
+  name: Lund University Research Portal (LUCRIS / Pure)
+  description: >-
+    Public external interface to the LUCRIS research information system, built on Elsevier Pure, covering
+    researchers, organisations, outputs, projects, datasets, and activities. Lund documents that LUCRIS
+    information can be retrieved automatically via API or RSS for institutional reporters and web editors;
+    full public Pure API access is not openly self-service.
+  humanURL: https://portal.research.lu.se/
+  tags:
+  - Research
+  - Pure
+  - LUCRIS
+  - Publications
+  - Metadata
+  properties:
+  - type: Documentation
+    url: https://www.staff.lu.se/research-and-education/research-support/lucris/research-portal
+- aid: lund:lund-publication-api
+  name: Lund University Publication API
+  description: The Publication API from Lund University — 2 operation(s) for publication.
+  humanURL: https://lup.lub.lu.se/search/doc/api
+  baseURL: https://lup.lub.lu.se/search/publication
+  tags:
+  - Publication
+  properties:
+  - type: OpenAPI
+    url: openapi/lund-publication-api-openapi.yml
+  - type: Documentation
+    url: https://lup.lub.lu.se/search/doc/api
+  - type: JSONSchema
+    url: json-schema/lund-publication-schema.json
+  - type: JSONSchema
+    url: json-schema/lund-searchresult-schema.json
+  - type: x-json-structure
+    url: json-structure/lund-publication-structure.json
+  - type: x-example
+    url: examples/lund-searchpublications-example.json
+  - type: x-spectral-rules
+    url: rules/lund-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/lund-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/lund-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/lund-agentic-access.yml
