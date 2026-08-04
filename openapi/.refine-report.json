@@ -1,0 +1,14 @@
+{
+  "provider": "lund",
+  "sources": [
+    "lund-publication-api-openapi.yml"
+  ],
+  "outputs": [
+    "lund-publication-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
