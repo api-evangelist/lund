@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lund University Publications (LUP) Search Publication API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search publications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lup.lub.lu.se/search/publication",
+            "params": [
+              {
+                "name": "q",
+                "value": "dna",
+                "type": "query",
+                "description": "Search query (free text or CQL expression)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP callback function name (used when format=jsonp)."
+              },
+              {
+                "name": "sort",
+                "value": "year.desc,title.asc",
+                "type": "query",
+                "description": "Comma-separated sort keys with .asc or .desc direction, e.g. year.desc,title.asc."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based pagination offset of the first returned hit."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of hits to return per request."
+              }
+            ]
+          },
+          "docs": "Full-text and field search over LUP publications. Supports CQL-style queries via the q parameter, paging, sorting, and JSON or JSONP output."
+        },
+        {
+          "info": {
+            "name": "Retrieve or export a single publication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lup.lub.lu.se/search/publication/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique LUP publication id."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Export/serialization format for the record."
+              }
+            ]
+          },
+          "docs": "Retrieve a single publication by its LUP id. Use the format query parameter (or a format file extension on the path) to export the record in a bibliographic format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

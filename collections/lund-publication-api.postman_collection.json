@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "697f72e9-f70c-42c3-ac74-893ee9440b1e",
+      "name": "Publication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4acd8c75-bc2b-4e91-94e2-8a8c9dd6f07a",
+          "name": "Search publications",
+          "request": {
+            "name": "Search publications",
+            "description": {
+              "content": "Full-text and field search over LUP publications. Supports CQL-style queries via the q parameter, paging, sorting, and JSON or JSONP output.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publication"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query (free text or CQL expression)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<string>",
+                  "description": "JSONP callback function name (used when format=jsonp)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated sort keys with .asc or .desc direction, e.g. year.desc,title.asc."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Zero-based pagination offset of the first returned hit."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of hits to return per request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c4db54b-0f71-4a95-862c-7ff94fde870f",
+              "name": "A page of publication search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "dna"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "year.desc,title.asc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3083,\n  \"size\": 8352,\n  \"start\": 3590,\n  \"limit\": 1750,\n  \"hits\": [\n    {\n      \"_id\": \"string\",\n      \"uuid\": \"string\",\n      \"mainTitle\": \"string\",\n      \"subtitle\": \"string\",\n      \"sortTitle\": \"string\",\n      \"abstract\": [\n        {\n          \"text\": \"string\",\n          \"lang\": \"string\"\n        },\n        {\n          \"text\": \"string\",\n          \"lang\": \"string\"\n        }\n      ],\n      \"type\": \"string\",\n      \"documentType\": \"string\",\n      \"documentTypeFull\": \"string\",\n      \"documentSubtype\": \"string\",\n      \"lupType\": \"string\",\n      \"lupTypeFull\": \"string\",\n      \"lupSubtype\": \"string\",\n      \"subject\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keyword\": [\n        \"string\",\n        \"string\"\n      ],\n      \"publication\": \"string\",\n      \"publisher\": \"string\",\n      \"publishingYear\": \"string\",\n      \"publishingDate\": \"string\",\n      \"publicationStatus\": \"string\",\n      \"submissionStatus\": \"string\",\n      \"peerReviewed\": true,\n      \"openAccess\": 410,\n      \"isNonLuPublication\": false,\n      \"language\": [\n        \"string\",\n        \"string\"\n      ],\n      \"issn\": [\n        \"string\",\n        \"string\"\n      ],\n      \"volume\": \"string\",\n      \"issue\": \"string\",\n      \"articleNumber\": \"string\",\n      \"pagesStart\": \"string\",\n      \"pagesEnd\": \"string\",\n      \"portalUrl\": \"http://UDlQbmHILpS.jgreRACRPeXkhBzqM7Gez7n\",\n      \"doiInfo\": {},\n      \"totalNumberOfAuthors\": 931,\n      \"author\": [\n        {\n          \"fullName\": \"string\",\n          \"givenName\": \"string\",\n          \"surname\": \"string\",\n          \"uuid\": \"string\",\n          \"luLdapId\": \"string\",\n          \"orcid\": \"string\",\n          \"role\": \"string\",\n          \"affiliation\": [\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 2493\n            },\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 8453\n            }\n          ]\n        },\n        {\n          \"fullName\": \"string\",\n          \"givenName\": \"string\",\n          \"surname\": \"string\",\n          \"uuid\": \"string\",\n          \"luLdapId\": \"string\",\n          \"orcid\": \"string\",\n          \"role\": \"string\",\n          \"affiliation\": [\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 5367\n            },\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 173\n            }\n          ]\n        }\n      ],\n      \"first_author\": {\n        \"fullName\": \"string\",\n        \"givenName\": \"string\",\n        \"surname\": \"string\",\n        \"uuid\": \"string\",\n        \"luLdapId\": \"string\",\n        \"orcid\": \"string\",\n        \"role\": \"string\",\n        \"affiliation\": [\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 2825\n          },\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 7430\n          }\n        ]\n      },\n      \"last_author\": {\n        \"fullName\": \"string\",\n        \"givenName\": \"string\",\n        \"surname\": \"string\",\n        \"uuid\": \"string\",\n        \"luLdapId\": \"string\",\n        \"orcid\": \"string\",\n        \"role\": \"string\",\n        \"affiliation\": [\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 5401\n          },\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 7057\n          }\n        ]\n      },\n      \"contributor_id\": [\n        \"string\",\n        \"string\"\n      ],\n      \"record_fulltext_access\": \"string\",\n      \"dateCreated\": \"string\",\n      \"dateLastChanged\": \"string\",\n      \"dateFirstPublic\": \"string\",\n      \"dateApproved\": \"string\",\n      \"datePureModified\": \"string\",\n      \"oai_datestamp\": \"string\",\n      \"digest\": \"string\",\n      \"additionalInfo\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"uuid\": \"string\",\n      \"mainTitle\": \"string\",\n      \"subtitle\": \"string\",\n      \"sortTitle\": \"string\",\n      \"abstract\": [\n        {\n          \"text\": \"string\",\n          \"lang\": \"string\"\n        },\n        {\n          \"text\": \"string\",\n          \"lang\": \"string\"\n        }\n      ],\n      \"type\": \"string\",\n      \"documentType\": \"string\",\n      \"documentTypeFull\": \"string\",\n      \"documentSubtype\": \"string\",\n      \"lupType\": \"string\",\n      \"lupTypeFull\": \"string\",\n      \"lupSubtype\": \"string\",\n      \"subject\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keyword\": [\n        \"string\",\n        \"string\"\n      ],\n      \"publication\": \"string\",\n      \"publisher\": \"string\",\n      \"publishingYear\": \"string\",\n      \"publishingDate\": \"string\",\n      \"publicationStatus\": \"string\",\n      \"submissionStatus\": \"string\",\n      \"peerReviewed\": false,\n      \"openAccess\": 9401,\n      \"isNonLuPublication\": false,\n      \"language\": [\n        \"string\",\n        \"string\"\n      ],\n      \"issn\": [\n        \"string\",\n        \"string\"\n      ],\n      \"volume\": \"string\",\n      \"issue\": \"string\",\n      \"articleNumber\": \"string\",\n      \"pagesStart\": \"string\",\n      \"pagesEnd\": \"string\",\n      \"portalUrl\": \"http://DLBQ.iwncqtMK0DY0W1dgyZlSz2eMoxSPfc\",\n      \"doiInfo\": {},\n      \"totalNumberOfAuthors\": 1316,\n      \"author\": [\n        {\n          \"fullName\": \"string\",\n          \"givenName\": \"string\",\n          \"surname\": \"string\",\n          \"uuid\": \"string\",\n          \"luLdapId\": \"string\",\n          \"orcid\": \"string\",\n          \"role\": \"string\",\n          \"affiliation\": [\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 9847\n            },\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 2953\n            }\n          ]\n        },\n        {\n          \"fullName\": \"string\",\n          \"givenName\": \"string\",\n          \"surname\": \"string\",\n          \"uuid\": \"string\",\n          \"luLdapId\": \"string\",\n          \"orcid\": \"string\",\n          \"role\": \"string\",\n          \"affiliation\": [\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 8560\n            },\n            {\n              \"name\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"organizationNumber\": \"string\",\n              \"isExternal\": 2813\n            }\n          ]\n        }\n      ],\n      \"first_author\": {\n        \"fullName\": \"string\",\n        \"givenName\": \"string\",\n        \"surname\": \"string\",\n        \"uuid\": \"string\",\n        \"luLdapId\": \"string\",\n        \"orcid\": \"string\",\n        \"role\": \"string\",\n        \"affiliation\": [\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 4105\n          },\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 2523\n          }\n        ]\n      },\n      \"last_author\": {\n        \"fullName\": \"string\",\n        \"givenName\": \"string\",\n        \"surname\": \"string\",\n        \"uuid\": \"string\",\n        \"luLdapId\": \"string\",\n        \"orcid\": \"string\",\n        \"role\": \"string\",\n        \"affiliation\": [\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 76\n          },\n          {\n            \"name\": [\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"text\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lang\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"organizationNumber\": \"string\",\n            \"isExternal\": 5068\n          }\n        ]\n      },\n      \"contributor_id\": [\n        \"string\",\n        \"string\"\n      ],\n      \"record_fulltext_access\": \"string\",\n      \"dateCreated\": \"string\",\n      \"dateLastChanged\": \"string\",\n      \"dateFirstPublic\": \"string\",\n      \"dateApproved\": \"string\",\n      \"datePureModified\": \"string\",\n      \"oai_datestamp\": \"string\",\n      \"digest\": \"string\",\n      \"additionalInfo\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c862910f-9524-41be-99c9-be59ee2f37be",
+          "name": "Retrieve or export a single publication",
+          "request": {
+            "name": "Retrieve or export a single publication",
+            "description": {
+              "content": "Retrieve a single publication by its LUP id. Use the format query parameter (or a format file extension on the path) to export the record in a bibliographic format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publication",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Export/serialization format for the record."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique LUP publication id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75d19eb3-a4dc-436f-aada-30bc025895eb",
+              "name": "The requested publication record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publication",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique LUP publication id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"type\": \"misc\",\n  \"classification\": \"B1\",\n  \"status\": \"returned\",\n  \"external\": 0,\n  \"title\": \"string\",\n  \"publication_status\": \"inpress\",\n  \"alternative_title\": [\n    \"string\",\n    \"string\"\n  ],\n  \"abstract\": [\n    \"string\",\n    \"string\"\n  ],\n  \"keyword\": [\n    \"string\",\n    \"string\"\n  ],\n  \"year\": \"1938\",\n  \"language\": [\n    \"str\",\n    \"str\"\n  ],\n  \"subject\": [\n    \"Veterinary Sciences\",\n    \"Business and Economics\"\n  ],\n  \"author\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"507302979804\",\n        \"570076038571\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"292312300565\",\n        \"277396958299\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"editor\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"457500438486\",\n        \"701625922811\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"224702231396\",\n        \"212640881449\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"promoter\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"187857097989\",\n        \"337008540172\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"name_last_first\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"ugent_id\": [\n        \"106920740935\",\n        \"500569007803\"\n      ],\n      \"affiliation\": [\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        },\n        {\n          \"ugent_id\": \"string\",\n          \"path\": {\n            \"ugent_id\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"affiliation\": [\n    {\n      \"ugent_id\": \"string\",\n      \"path\": {\n        \"ugent_id\": \"string\"\n      }\n    },\n    {\n      \"ugent_id\": \"string\",\n      \"path\": {\n        \"ugent_id\": \"string\"\n      }\n    }\n  ],\n  \"parent\": {\n    \"title\": \"string\",\n    \"short_title\": \"string\"\n  },\n  \"publisher\": {\n    \"location\": \"string\",\n    \"name\": \"string\"\n  },\n  \"volume\": \"string\",\n  \"issue\": \"string\",\n  \"article_number\": \"string\",\n  \"edition\": \"string\",\n  \"isbn\": [\n    \"string\",\n    \"string\"\n  ],\n  \"issn\": [\n    \"string\",\n    \"string\"\n  ],\n  \"doi\": [\n    \"string\",\n    \"string\"\n  ],\n  \"wos_id\": \"string\",\n  \"file\": [\n    {\n      \"_id\": \"string\",\n      \"content_type\": \"string\",\n      \"name\": \"string\",\n      \"access\": \"openAccess\",\n      \"description\": \"string\",\n      \"size\": 4610\n    },\n    {\n      \"_id\": \"string\",\n      \"content_type\": \"string\",\n      \"name\": \"string\",\n      \"access\": \"lu\",\n      \"description\": \"string\",\n      \"size\": 6412\n    }\n  ],\n  \"jcr\": {\n    \"category_quartile\": 1,\n    \"category_decile\": 6,\n    \"category_vigintile\": 12,\n    \"total_cites\": 9095,\n    \"immediacy_index\": 3792.3655703169457,\n    \"impact_factor\": 143.51075024730875,\n    \"impact_factor_5year\": 4627.366363396769,\n    \"eigenfactor\": 7336.872308585347,\n    \"prev_impact_factor\": 5477.602975817568,\n    \"prev_category_quartile\": 2\n  },\n  \"date_created\": \"string\",\n  \"date_updated\": \"string\",\n  \"date_submitted\": \"string\",\n  \"date_approved\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a2d5abc-d2dc-4650-920a-537951962e67",
+              "name": "No publication found for the given id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publication",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique LUP publication id."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lup.lub.lu.se/search",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "971a2047-486b-437f-8e07-4d339af62398",
+    "name": "Lund University Publications (LUP) Search Publication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST/JSON(P) search interface over the Lund University Publications (LUP) database. Returns publication hits with paging metadata (total, size, start, limit). Individual records can also be exported in bibliographic formats. No authentication is required. The public API only returns records with status 'public'. This OpenAPI description was reconstructed faithfully from the published LUP API documentation (https://lup.lub.lu.se/search/doc/api), the published publication JSON Schema (https://lup.lub.lu.se/search/schema/publication.json), and observed live responses; LUP does not publish a native OpenAPI/Swagger document.\n\nContact Support:\n Name: Lund University Libraries",
+      "type": "text/plain"
+    }
+  }
+}
