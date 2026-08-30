@@ -1,0 +1,14 @@
+{
+  "repo": "lund",
+  "feeds": [
+    {
+      "source": "https://www.lunduniversity.lu.se/about-lund-university/contact-us/processing-personal-data-lund-university",
+      "feed_url": "https://www.lunduniversity.lu.se/about-lund-university/contact-us/processing-personal-data-lund-university",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-30T22:33:40Z"
+}
