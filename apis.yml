@@ -71,14 +71,13 @@ apis:
 - aid: lund:lund-publication-api
   name: Lund University Publications Search API
   description: >-
-    Keyless REST/JSON(P) search over the Lund University Publications (LUP) research-output
-    database, operated by Lund University Libraries on Lund's own host. Supports CQL-style
-    queries, paging and sorting, plus per-record and bulk bibliographic export in BibTeX,
-    RIS, EndNote, CSV and Excel. Author records carry ORCID iDs and DOIs. Note that the
-    JSON Schema Lund publishes at /search/schema/publication.json describes the upstream
-    repository record model — it still carries UGent classification codes and VABB fields —
-    and not the shape the live search endpoint returns; the OpenAPI below models both, with
-    PublicationHit derived from observed live responses.
+    Keyless REST/JSON(P) search over the Lund University Publications (LUP) research-output database,
+    operated by Lund University Libraries on Lund's own host. Supports CQL-style queries, paging and sorting,
+    plus per-record and bulk bibliographic export in BibTeX, RIS, EndNote, CSV and Excel. Author records
+    carry ORCID iDs and DOIs. Note that the JSON Schema Lund publishes at /search/schema/publication.json
+    describes the upstream repository record model — it still carries UGent classification codes and VABB
+    fields — and not the shape the live search endpoint returns; the OpenAPI below models both, with PublicationHit
+    derived from observed live responses.
   humanURL: https://lup.lub.lu.se/search/doc/api
   baseURL: https://lup.lub.lu.se/search
   x-operator: institution
@@ -110,11 +109,10 @@ apis:
 - aid: lund:lup-oai
   name: Lund University Publications OAI-PMH
   description: >-
-    OAI-PMH 2.0 metadata-harvesting endpoint for the LUP research-output repository.
-    Identify confirms repositoryName "Lund University Publications", repositoryIdentifier
-    lup.lub.lu.se and adminEmail publicera@lub.lu.se; ListMetadataFormats advertises oai_dc
-    and MODS 3.3. No authentication required. Note the working base URL is /oai — the
-    /search/oai path given in Lund's own documentation returns 404.
+    OAI-PMH 2.0 metadata-harvesting endpoint for the LUP research-output repository. Identify confirms
+    repositoryName "Lund University Publications", repositoryIdentifier lup.lub.lu.se and adminEmail publicera@lub.lu.se;
+    ListMetadataFormats advertises oai_dc and MODS 3.3. No authentication required. Note the working base
+    URL is /oai — the /search/oai path given in Lund's own documentation returns 404.
   humanURL: https://lup.lub.lu.se/search/doc/api
   baseURL: https://lup.lub.lu.se/oai
   x-operator: institution
@@ -130,10 +128,10 @@ apis:
 - aid: lund:lup-sru
   name: Lund University Publications SRU
   description: >-
-    SRU 1.1 Search/Retrieve via URL service over the LUP research-output database, querying
-    with CQL and returning MODS 3.3 records in the http://www.loc.gov/zing/srw/ namespace.
-    Scan and explain are not supported. No authentication required. The working base URL is
-    /sru — the /search/sru path in Lund's documentation returns 404.
+    SRU 1.1 Search/Retrieve via URL service over the LUP research-output database, querying with CQL and
+    returning MODS 3.3 records in the http://www.loc.gov/zing/srw/ namespace. Scan and explain are not
+    supported. No authentication required. The working base URL is /sru — the /search/sru path in Lund's
+    documentation returns 404.
   humanURL: https://lup.lub.lu.se/search/doc/api
   baseURL: https://lup.lub.lu.se/sru
   x-operator: institution
@@ -149,9 +147,9 @@ apis:
 - aid: lund:lup-unapi
   name: Lund University Publications unAPI
   description: >-
-    unAPI 1 discovery service returning the alternate metadata formats available for LUP
-    records, which is how reference managers such as Zotero autodiscover Lund records. No
-    authentication required. The base URL is /search/unapi; /unapi returns 404.
+    unAPI 1 discovery service returning the alternate metadata formats available for LUP records, which
+    is how reference managers such as Zotero autodiscover Lund records. No authentication required. The
+    base URL is /search/unapi; /unapi returns 404.
   humanURL: https://lup.lub.lu.se/search/doc/api
   baseURL: https://lup.lub.lu.se/search/unapi
   x-operator: institution
@@ -164,35 +162,13 @@ apis:
   properties:
   - type: Documentation
     url: https://lup.lub.lu.se/search/doc/api
-- aid: lund:lup-student-papers
-  name: LUP Student Papers Search API
-  description: >-
-    Keyless REST/JSON(P) search over LUP Student Papers, a second Lund University Libraries
-    repository holding student theses and degree projects, with its own record model —
-    courseCode, courseTerm, studentPaperType, supervisor and reviewer. Search metadata is
-    public; individual full texts may be restricted to Lund accounts via file.accessLevel,
-    and records carry student account identifiers, so payloads are personal data.
-  humanURL: https://lup.lub.lu.se/student-papers/search/doc/api
-  baseURL: https://lup.lub.lu.se/student-papers/search
-  x-operator: institution
-  tags:
-  - Student Papers
-  - Theses
-  - Search
-  - Library
-  - Open Metadata
-  properties:
-  - type: OpenAPI
-    url: openapi/lund-student-papers-api-openapi.yml
-  - type: Documentation
-    url: https://lup.lub.lu.se/student-papers/search/doc/api
 - aid: lund:lup-student-papers-oai
   name: LUP Student Papers OAI-PMH
   description: >-
-    OAI-PMH 2.0 harvesting endpoint for the LUP Student Papers repository. Identify confirms
-    repositoryName "Lund University Publications - Student Papers" and repositoryIdentifier
-    lup-student-papers.lub.lu.se. A distinct repository from the research-output instance,
-    with its own identifier namespace. No authentication required.
+    OAI-PMH 2.0 harvesting endpoint for the LUP Student Papers repository. Identify confirms repositoryName
+    "Lund University Publications - Student Papers" and repositoryIdentifier lup-student-papers.lub.lu.se.
+    A distinct repository from the research-output instance, with its own identifier namespace. No authentication
+    required.
   humanURL: https://lup.lub.lu.se/student-papers/search/doc/api
   baseURL: https://lup.lub.lu.se/student-papers/oai
   x-operator: institution
@@ -208,8 +184,8 @@ apis:
 - aid: lund:lup-student-papers-sru
   name: LUP Student Papers SRU
   description: >-
-    SRU 1.1 / CQL search service over the LUP Student Papers repository, returning MODS 3.3
-    records. No authentication required. Base URL is /student-papers/sru.
+    SRU 1.1 / CQL search service over the LUP Student Papers repository, returning MODS 3.3 records. No
+    authentication required. Base URL is /student-papers/sru.
   humanURL: https://lup.lub.lu.se/student-papers/search/doc/api
   baseURL: https://lup.lub.lu.se/student-papers/sru
   x-operator: institution
@@ -225,13 +201,13 @@ apis:
 - aid: lund:idp-saml-metadata
   name: Lund University Shibboleth Identity Provider (SWAMID)
   description: >-
-    Lund University's own SAML 2.0 / Shibboleth Identity Provider, serving machine-readable
-    federation metadata at its entityID. The EntityDescriptor declares an IDPSSODescriptor,
-    the Shibboleth scope lu.se, DiscoHints for lu.se and lth.se, and Swedish and English
-    UIInfo. The entity is registered in SWAMID, Sweden's national identity federation, and
-    is present in the SWAMID IdP aggregate that feeds eduGAIN. Institution-operated by
-    definition and the one surface here that is not a library service. It authenticates
-    people with a Lund affiliation; it is not a credential a third-party developer can get.
+    Lund University's own SAML 2.0 / Shibboleth Identity Provider, serving machine-readable federation
+    metadata at its entityID. The EntityDescriptor declares an IDPSSODescriptor, the Shibboleth scope
+    lu.se, DiscoHints for lu.se and lth.se, and Swedish and English UIInfo. The entity is registered in
+    SWAMID, Sweden's national identity federation, and is present in the SWAMID IdP aggregate that feeds
+    eduGAIN. Institution-operated by definition and the one surface here that is not a library service.
+    It authenticates people with a Lund affiliation; it is not a credential a third-party developer can
+    get.
   humanURL: https://swamid.se/
   baseURL: https://idpv4.lu.se/idp/shibboleth
   x-operator: institution
@@ -249,13 +225,12 @@ apis:
 - aid: lund:research-portal
   name: Lund University Research Portal (LUCRIS / Elsevier Pure)
   description: >-
-    Lund's tenant deployment of Elsevier Pure, branded LUCRIS, covering researchers,
-    organisations, outputs, projects, datasets and activities at portal.research.lu.se. The
-    data and the deployment are Lund's; the contract, the record model and the web service
-    are Elsevier's, so no Pure specification is stored under this institution. The Pure web
-    service path exists on Lund's host but refuses anonymous callers with HTTP 500 and
-    Pure's status 999 envelope. Lund documents that LUCRIS content can be retrieved by API
-    or RSS for institutional reporters and web editors — there is no open route to a key.
+    Lund's tenant deployment of Elsevier Pure, branded LUCRIS, covering researchers, organisations, outputs,
+    projects, datasets and activities at portal.research.lu.se. The data and the deployment are Lund's;
+    the contract, the record model and the web service are Elsevier's, so no Pure specification is stored
+    under this institution. The Pure web service path exists on Lund's host but refuses anonymous callers
+    with HTTP 500 and Pure's status 999 envelope. Lund documents that LUCRIS content can be retrieved
+    by API or RSS for institutional reporters and web editors — there is no open route to a key.
   humanURL: https://portal.research.lu.se/
   x-operator: tenant
   x-vendor: Elsevier Pure
