@@ -240,6 +240,12 @@ apis:
   - Pure
   - LUCRIS
   - Research Information
+  - Tenants
+  tags_raw:
+  - Research
+  - Pure
+  - LUCRIS
+  - Research Information
   - Tenant
   properties:
   - type: Documentation
