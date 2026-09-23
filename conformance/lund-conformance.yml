@@ -1,0 +1,124 @@
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of Lund University hosts on 2026-08-30, plus the SWAMID federation
+  metadata aggregate. Every entry below names the exact response that carries the
+  evidence; nothing here is read from a prose claim on a web page.
+regime: education
+note: >-
+  Reward-only. Standards Lund does not implement are recorded as conforms:false with
+  the probe that showed their absence, so the gap is measured rather than assumed.
+standards:
+- id: oai-pmh
+  conforms: true
+  version: '2.0'
+  evidence: >-
+    Two institution-operated OAI-PMH 2.0 repositories confirmed by Identify.
+    https://lup.lub.lu.se/oai?verb=Identify (200) returns repositoryName "Lund University
+    Publications", repositoryIdentifier lup.lub.lu.se, adminEmail publicera@lub.lu.se,
+    granularity YYYY-MM-DDThh:mm:ssZ. https://lup.lub.lu.se/student-papers/oai?verb=Identify
+    (200) returns repositoryName "Lund University Publications - Student Papers",
+    repositoryIdentifier lup-student-papers.lub.lu.se. ListMetadataFormats on the first
+    advertises oai_dc and mods (MODS 3.3).
+  endpoints:
+  - https://lup.lub.lu.se/oai
+  - https://lup.lub.lu.se/student-papers/oai
+- id: shibboleth
+  conforms: true
+  evidence: >-
+    Lund operates its own Shibboleth Identity Provider. https://idpv4.lu.se/idp/shibboleth
+    (200, application/xml) returns an EntityDescriptor with
+    entityID="https://idpv4.lu.se/idp/shibboleth", an IDPSSODescriptor, and the Shibboleth
+    metadata extension shibmd:Scope regexp="false" of lu.se — the Shibboleth-specific scope
+    element, not generic SAML.
+  endpoints:
+  - https://idpv4.lu.se/idp/shibboleth
+- id: saml
+  conforms: true
+  version: SAML 2.0
+  evidence: >-
+    The same EntityDescriptor declares protocolSupportEnumeration
+    "urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol
+    urn:mace:shibboleth:1.0" with mdui:UIInfo DisplayName "Lund University" / "Lunds
+    universitet" and mdui:DiscoHints DomainHint lu.se, lth.se. The entity is registered in
+    the Swedish national federation SWAMID — it is present in the SWAMID IdP aggregate
+    https://mds.swamid.se/md/swamid-idp.xml (200, 627 KB) under that exact entityID, which
+    is the eduGAIN-interfederated aggregate.
+  endpoints:
+  - https://idpv4.lu.se/idp/shibboleth
+  - https://mds.swamid.se/md/swamid-idp.xml
+- id: orcid
+  conforms: true
+  evidence: >-
+    ORCID iDs are carried in the live LUP Search API payload as an author-level `orcid`
+    field. Observed on 2026-08-30 in
+    https://lup.lub.lu.se/search/publication?q=dna&format=json — for example
+    author[].orcid "0000-0002-1081-3553" and "0000-0003-4451-4006".
+  endpoints:
+  - https://lup.lub.lu.se/search/publication
+- id: sru
+  conforms: true
+  version: '1.1'
+  scored: false
+  evidence: >-
+    SRU 1.1 searchRetrieve over CQL confirmed live on both instances.
+    https://lup.lub.lu.se/sru?operation=searchRetrieve&version=1.1&query=dna&maximumRecords=1
+    (200) returns a searchRetrieveResponse in the http://www.loc.gov/zing/srw/ namespace with
+    numberOfRecords 4488 and recordSchema info:srw/schema/1/mods-v3.3. The student-papers
+    instance answers the same request at /student-papers/sru. Scan and explain are not
+    supported (the documented explain URL 404s). Not a scored `education` regime standard —
+    recorded because it is a real, live, institution-operated conformance.
+  endpoints:
+  - https://lup.lub.lu.se/sru
+  - https://lup.lub.lu.se/student-papers/sru
+- id: unapi
+  conforms: true
+  version: '1'
+  scored: false
+  evidence: >-
+    https://lup.lub.lu.se/search/unapi (200, application/xml) returns a unAPI 1 <formats>
+    document. The same document is served at /student-papers/search/unapi. Note the base URL
+    is /search/unapi, not /unapi — /unapi returns Apache 404.
+  endpoints:
+  - https://lup.lub.lu.se/search/unapi
+  - https://lup.lub.lu.se/student-papers/search/unapi
+- id: rfc9116-security-txt
+  conforms: partial
+  scored: false
+  evidence: >-
+    https://www.lu.se/.well-known/security.txt (200) is present with Contact
+    mailto:abuse@lu.se, mailto:security@lu.se, tel:+46-46-2229000 and
+    https://www.ldc.lu.se/tjanster/it-sakerhet — but its Expires field reads
+    2025-12-31T00:00:00z, so the file is expired as of this probe.
+- id: datacite
+  conforms: false
+  evidence: >-
+    No Lund-operated DataCite surface was reached. LUP records carry DOIs in a `doiInfo`
+    object (for example 10.1016/j.fsigen.2026.103548), but those are publisher-minted
+    Crossref DOIs recorded on the record, not evidence that Lund runs a DataCite minting or
+    resolution service. Recorded as false rather than inferred from DOI presence.
+- id: crossref
+  conforms: false
+  evidence: >-
+    Same as datacite — Lund consumes Crossref DOIs in its records but no Lund-operated
+    Crossref-conformant deposit or query surface was found.
+- id: lti
+  conforms: false
+  evidence: No public LTI platform or tool registration surface found on any lu.se host.
+- id: scim
+  conforms: false
+  evidence: >-
+    No public SCIM endpoint. Identity provisioning at Lund is behind SWAMID/Shibboleth
+    federated authentication, not an open SCIM surface.
+- id: oneroster
+  conforms: false
+  evidence: Not applicable in the Swedish higher-education stack; no OneRoster surface found.
+- id: ed-fi
+  conforms: false
+  evidence: US K-12 standard; no Ed-Fi surface found and none expected.
+- id: caliper
+  conforms: false
+  evidence: No Caliper Analytics endpoint found on any lu.se host.
+- id: qti
+  conforms: false
+  evidence: No QTI surface found on any lu.se host.

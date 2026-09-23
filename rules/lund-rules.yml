@@ -1,3 +1,5 @@
+# x-method: generated
+# x-derived-from: openapi/lund-publication-api-openapi.yml
 extends: []
 formats:
   - oas3

@@ -1,7 +1,7 @@
 {
   "provider": "lund",
   "sources": [
-    "lund-publication-api-openapi.yml"
+    "_original/lund-lup-search.yaml"
   ],
   "outputs": [
     "lund-publication-api-openapi.yml"
@@ -9,6 +9,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "lund-lup-search.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "lund-lup-search.yaml: tagged paths GET /publication -> Publication",
+    "lund-lup-search.yaml: tagged paths GET /publication/{id} -> Publication",
+    "lund-lup-search.yaml: declared missing tag: Publication",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/lund-student-papers.yaml: archived document superseded by a larger archived document",
+    "lund-publication-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

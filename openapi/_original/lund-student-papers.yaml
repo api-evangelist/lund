@@ -1,0 +1,224 @@
+openapi: 3.0.3
+x-method: derived
+x-source-url: https://lup.lub.lu.se/student-papers/search/doc/api
+x-derived-from: >-
+  Lund University Libraries' published LUP Student Papers API documentation plus live
+  probed responses from https://lup.lub.lu.se/student-papers/search/publication (2026-08-30).
+  Lund publishes no native OpenAPI for this service; this description is API Evangelist's,
+  not Lund's.
+info:
+  title: LUP Student Papers Search API
+  description: >-
+    REST/JSON(P) search interface over LUP Student Papers, the Lund University
+    Libraries repository of student theses and degree projects. It is a second,
+    separately-scoped instance of the same Lund University Libraries publication
+    platform that serves Lund University Publications (LUP), mounted under
+    /student-papers, with its own OAI-PMH repository identifier
+    (lup-student-papers.lub.lu.se) and its own record model — student papers carry
+    courseCode, courseTerm, studentPaperType, supervisor and reviewer fields that
+    the research-output instance does not.
+
+    Operated by Lund University Libraries on Lund University's own host. No
+    authentication is required for the public search surface; the underlying full
+    texts may still be access-restricted per record (see file.accessLevel).
+
+    Lund publishes no native OpenAPI/Swagger document for this service. This
+    description was reconstructed from the service's own published documentation
+    at https://lup.lub.lu.se/student-papers/search/doc/api and from live probed
+    responses on 2026-08-30. Field descriptions are stated only where the live
+    payload or the documentation supports them.
+  version: '1.0'
+  contact:
+    name: Lund University Libraries
+    email: publicera@lub.lu.se
+    url: https://lup.lub.lu.se/student-papers/search/doc/api
+  license:
+    name: See LUP Student Papers terms of use
+    url: https://lup.lub.lu.se/student-papers/search/doc/api
+servers:
+  - url: https://lup.lub.lu.se/student-papers/search
+    description: LUP Student Papers search service
+tags:
+  - name: Student Paper
+paths:
+  /publication:
+    get:
+      tags: [Student Paper]
+      operationId: searchStudentPapers
+      summary: Search student papers
+      description: >-
+        Full-text and field search over LUP Student Papers. Supports CQL-style
+        queries via the q parameter, paging, sorting, and JSON or JSONP output.
+      parameters:
+        - name: q
+          in: query
+          description: Search query (free text or CQL expression).
+          required: false
+          schema: { type: string }
+          example: dna
+        - name: format
+          in: query
+          description: Response format.
+          required: false
+          schema:
+            type: string
+            enum: [json, jsonp]
+            default: json
+        - name: callback
+          in: query
+          description: JSONP callback function name (used when format=jsonp).
+          required: false
+          schema: { type: string }
+        - name: sort
+          in: query
+          description: >-
+            Comma-separated sort clauses in the form field.direction,
+            e.g. year.desc,title.asc.
+          required: false
+          schema: { type: string }
+        - name: start
+          in: query
+          description: Zero-based offset of the first hit to return.
+          required: false
+          schema: { type: integer, minimum: 0, default: 0 }
+        - name: limit
+          in: query
+          description: Number of hits to return per page.
+          required: false
+          schema: { type: integer, minimum: 1, default: 10 }
+      responses:
+        '200':
+          description: A page of student paper search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentPaperSearchResult'
+            text/javascript:
+              schema:
+                type: string
+                description: JSONP — the JSON body wrapped in the requested callback function.
+components:
+  schemas:
+    StudentPaperSearchResult:
+      type: object
+      description: A page of student paper search results.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        size:
+          type: integer
+          description: Number of hits in this page.
+        start:
+          type: integer
+          description: Zero-based offset of the first hit in this page.
+        limit:
+          type: integer
+          description: Requested page size.
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudentPaperHit'
+    StudentPaperHit:
+      type: object
+      description: >-
+        One student paper record as returned by the search API. Observed live on
+        2026-08-30; the field set is the union of what the probed responses
+        carried, not a provider-published schema.
+      properties:
+        _id:
+          type: string
+          description: Record identifier.
+        oId:
+          type: integer
+          description: Internal object identifier for the record.
+        type:
+          type: string
+          description: Record type.
+        mainTitle:
+          type: string
+          description: Title of the student paper.
+        sortTitle:
+          type: string
+        abstract:
+          type: array
+          items: { type: object, additionalProperties: true }
+          description: Abstract, one entry per language.
+        popAbstract:
+          type: array
+          items: { type: object, additionalProperties: true }
+          description: Popular-science abstract, one entry per language.
+        keyword:
+          type: array
+          items: { type: string }
+        subject:
+          type: array
+          items: { type: object, additionalProperties: true }
+        language:
+          type: array
+          items: { type: object, additionalProperties: true }
+        publishingYear:
+          type: string
+        courseCode:
+          type: string
+          description: Lund University course code the paper was submitted for.
+        courseTerm:
+          type: string
+          description: Term the course ran in.
+        studentPaperType:
+          type: object
+          additionalProperties: true
+          description: >-
+            Degree level of the paper (for example H2, "Master's Degree (Two Years)").
+        department:
+          type: array
+          items: { type: object, additionalProperties: true }
+        author:
+          type: array
+          items: { type: object, additionalProperties: true }
+        supervisor:
+          type: array
+          items: { type: object, additionalProperties: true }
+        reviewer:
+          type: array
+          items: { type: object, additionalProperties: true }
+        editor:
+          type: array
+          items: { type: object, additionalProperties: true }
+        creator:
+          type: object
+          additionalProperties: true
+        contributor_id:
+          type: array
+          items: { type: string }
+        first_author:
+          type: array
+          items: { type: object, additionalProperties: true }
+        last_author:
+          type: array
+          items: { type: object, additionalProperties: true }
+        luStudent:
+          type: array
+          items: { type: object, additionalProperties: true }
+          description: >-
+            Student account records attached to the paper. Carries personal
+            account identifiers; treat as personal data.
+        file:
+          type: array
+          description: >-
+            Attached files. accessLevel governs who may retrieve the full text
+            (for example "lu" restricts retrieval to Lund University accounts).
+          items: { type: object, additionalProperties: true }
+        record_fulltext_access:
+          type: string
+        submissionStatus:
+          type: string
+        dateSubmitted: { type: string }
+        dateToTeacher: { type: string }
+        dateApproved: { type: string }
+        dateCreated: { type: string }
+        dateFirstPublic: { type: string }
+        dateLastChanged: { type: string }
+        oai_datestamp:
+          type: string
+          description: Datestamp used by the OAI-PMH interface for this record.

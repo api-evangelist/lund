@@ -1,0 +1,49 @@
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live anonymous probes of every Lund University surface on this profile, 2026-08-30.
+summary:
+  types:
+  - none
+  - saml
+note: >-
+  Lund University's public machine-readable surfaces are entirely anonymous — no key, no
+  token, no registration. Everything that is gated is gated by federated institutional
+  affiliation (SWAMID SAML), not by an API credential, which is the characteristic access
+  model of a university rather than a commercial API provider. There is no developer
+  registration flow, no self-service key issuance, and no plan to buy.
+schemes:
+- name: none
+  type: none
+  description: >-
+    No authentication. Confirmed by anonymous HTTP GET returning 200 with real data on:
+    the LUP Search API, both OAI-PMH repositories, both SRU services, both unAPI services,
+    the RSS feeds, the bulk export endpoint and the published JSON Schema.
+  sources:
+  - https://lup.lub.lu.se/search/publication?q=dna&format=json
+  - https://lup.lub.lu.se/oai?verb=Identify
+  - https://lup.lub.lu.se/sru?operation=searchRetrieve&version=1.1&query=dna
+  - https://lup.lub.lu.se/search/unapi
+  - https://lup.lub.lu.se/student-papers/search/publication?q=dna&format=json
+  - https://lup.lub.lu.se/student-papers/oai?verb=Identify
+- name: swamid-saml-sso
+  type: saml
+  description: >-
+    SAML 2.0 / Shibboleth single sign-on against Lund's own Identity Provider
+    (entityID https://idpv4.lu.se/idp/shibboleth, scope lu.se), registered in the Swedish
+    national federation SWAMID and interfederated through eduGAIN. This is the gate in
+    front of staff and student services — it authenticates people with an institutional
+    affiliation, and it is not an API credential a third-party developer can obtain.
+  sources:
+  - https://idpv4.lu.se/idp/shibboleth
+  - https://mds.swamid.se/md/swamid-idp.xml
+gated:
+- surface: LUCRIS / Research Portal Pure web service
+  url: https://portal.research.lu.se/ws/api
+  observed_status: 500
+  observed_body: '{"timestamp":...,"status":999,"error":"None"}'
+  detail: >-
+    The Elsevier Pure web service path exists on Lund's portal host but refuses anonymous
+    callers with an HTTP 500 carrying Pure's status 999 envelope. Lund documents that LUCRIS
+    content can be retrieved via API for institutional reporters and web editors; there is
+    no open self-service route to a key, and the contract is Elsevier's in any case.

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Lund University Publications (LUP) Search Publication API
-  description: REST/JSON(P) search interface over the Lund University Publications (LUP) database. Returns publication hits with paging metadata (total, size, start, limit). Individual records can also be exported in bibliographic formats. No authentication is required. The public API only returns records with status 'public'. This OpenAPI description was reconstructed faithfully from the published LUP API documentation (https://lup.lub.lu.se/search/doc/api), the published publication JSON Schema (https://lup.lub.lu.se/search/schema/publication.json), and observed live responses; LUP does not publish a native OpenAPI/Swagger document.
+  description: REST/JSON(P) search interface over the Lund University Publications (LUP) database.
   version: '1.0'
   contact:
     name: Lund University Libraries
@@ -121,6 +121,42 @@ paths:
       - Publication
 components:
   schemas:
+    File:
+      type: object
+      required:
+      - _id
+      - content_type
+      - name
+      - access
+      properties:
+        _id:
+          type: string
+        content_type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        access:
+          type: string
+          enum:
+          - openAccess
+          - lu
+          - admin
+        size:
+          type: integer
+          minimum: 1
+    Affiliation:
+      type: object
+      properties:
+        ugent_id:
+          type: string
+          description: LU organization id
+        path:
+          type: object
+          properties:
+            ugent_id:
+              type: string
     HitAuthor:
       type: object
       description: An author as returned in a search hit.
@@ -178,69 +214,136 @@ components:
           description: List of publication hits for this page.
           items:
             $ref: '#/components/schemas/PublicationHit'
-    Jcr:
+    PublicationHit:
       type: object
-      description: Journal Citation Reports info for the publication year.
-      properties:
-        category_quartile:
-          type: integer
-          minimum: 1
-          maximum: 4
-        category_decile:
-          type: integer
-          minimum: 1
-          maximum: 10
-        category_vigintile:
-          type: integer
-          minimum: 1
-          maximum: 20
-        total_cites:
-          type: integer
-          minimum: 0
-        immediacy_index:
-          type: number
-          minimum: 0
-        impact_factor:
-          type: number
-          minimum: 0
-        impact_factor_5year:
-          type: number
-          minimum: 0
-        eigenfactor:
-          type: number
-          minimum: 0
-        prev_impact_factor:
-          type: number
-          minimum: 0
-        prev_category_quartile:
-          type: integer
-          minimum: 1
-          maximum: 4
-    File:
-      type: object
-      required:
-      - _id
-      - content_type
-      - name
-      - access
+      description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
       properties:
         _id:
           type: string
-        content_type:
+        uuid:
           type: string
-        name:
+        mainTitle:
           type: string
-        description:
+        subtitle:
           type: string
-        access:
+        sortTitle:
           type: string
-          enum:
-          - openAccess
-          - lu
-          - admin
-        size:
+        abstract:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              lang:
+                type: string
+        type:
+          type: string
+        documentType:
+          type: string
+        documentTypeFull:
+          type: string
+        documentSubtype:
+          type: string
+        lupType:
+          type: string
+        lupTypeFull:
+          type: string
+        lupSubtype:
+          type: string
+        subject:
+          type: array
+          items:
+            type: string
+        keyword:
+          type: array
+          items:
+            type: string
+        publication:
+          type: string
+        publisher:
+          type: string
+        publishingYear:
+          type: string
+        publishingDate:
+          type: string
+        publicationStatus:
+          type: string
+        submissionStatus:
+          type: string
+        peerReviewed:
+          type: boolean
+        openAccess:
           type: integer
-          minimum: 1
+        isNonLuPublication:
+          type: boolean
+        language:
+          type: array
+          items:
+            type: string
+        issn:
+          type: array
+          items:
+            type: string
+        volume:
+          type: string
+        issue:
+          type: string
+        articleNumber:
+          type: string
+        pagesStart:
+          type: string
+        pagesEnd:
+          type: string
+        portalUrl:
+          type: string
+          format: uri
+        doiInfo:
+          type: object
+        externalIdentifier:
+          type: array
+          items:
+            type: object
+        totalNumberOfAuthors:
+          type: integer
+        author:
+          type: array
+          items:
+            $ref: '#/components/schemas/HitAuthor'
+        first_author:
+          $ref: '#/components/schemas/HitAuthor'
+        last_author:
+          $ref: '#/components/schemas/HitAuthor'
+        contributor_id:
+          type: array
+          items:
+            type: string
+        department:
+          type: array
+          items:
+            type: object
+        researchGroup:
+          type: array
+          items:
+            type: object
+        record_fulltext_access:
+          type: string
+        dateCreated:
+          type: string
+        dateLastChanged:
+          type: string
+        dateFirstPublic:
+          type: string
+        dateApproved:
+          type: string
+        datePureModified:
+          type: string
+        oai_datestamp:
+          type: string
+        digest:
+          type: string
+        additionalInfo:
+          type: object
     Publication:
       type: object
       description: A LU publication as defined by the LUP publication JSON Schema (https://lup.lub.lu.se/search/schema/publication.json). Used for the single-record/export representation.
@@ -442,144 +545,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Affiliation'
-    PublicationHit:
+    Jcr:
       type: object
-      description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
+      description: Journal Citation Reports info for the publication year.
       properties:
-        _id:
-          type: string
-        uuid:
-          type: string
-        mainTitle:
-          type: string
-        subtitle:
-          type: string
-        sortTitle:
-          type: string
-        abstract:
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                type: string
-              lang:
-                type: string
-        type:
-          type: string
-        documentType:
-          type: string
-        documentTypeFull:
-          type: string
-        documentSubtype:
-          type: string
-        lupType:
-          type: string
-        lupTypeFull:
-          type: string
-        lupSubtype:
-          type: string
-        subject:
-          type: array
-          items:
-            type: string
-        keyword:
-          type: array
-          items:
-            type: string
-        publication:
-          type: string
-        publisher:
-          type: string
-        publishingYear:
-          type: string
-        publishingDate:
-          type: string
-        publicationStatus:
-          type: string
-        submissionStatus:
-          type: string
-        peerReviewed:
-          type: boolean
-        openAccess:
+        category_quartile:
           type: integer
-        isNonLuPublication:
-          type: boolean
-        language:
-          type: array
-          items:
-            type: string
-        issn:
-          type: array
-          items:
-            type: string
-        volume:
-          type: string
-        issue:
-          type: string
-        articleNumber:
-          type: string
-        pagesStart:
-          type: string
-        pagesEnd:
-          type: string
-        portalUrl:
-          type: string
-          format: uri
-        doiInfo:
-          type: object
-        externalIdentifier:
-          type: array
-          items:
-            type: object
-        totalNumberOfAuthors:
+          minimum: 1
+          maximum: 4
+        category_decile:
           type: integer
-        author:
-          type: array
-          items:
-            $ref: '#/components/schemas/HitAuthor'
-        first_author:
-          $ref: '#/components/schemas/HitAuthor'
-        last_author:
-          $ref: '#/components/schemas/HitAuthor'
-        contributor_id:
-          type: array
-          items:
-            type: string
-        department:
-          type: array
-          items:
-            type: object
-        researchGroup:
-          type: array
-          items:
-            type: object
-        record_fulltext_access:
-          type: string
-        dateCreated:
-          type: string
-        dateLastChanged:
-          type: string
-        dateFirstPublic:
-          type: string
-        dateApproved:
-          type: string
-        datePureModified:
-          type: string
-        oai_datestamp:
-          type: string
-        digest:
-          type: string
-        additionalInfo:
-          type: object
-    Affiliation:
-      type: object
-      properties:
-        ugent_id:
-          type: string
-          description: LU organization id
-        path:
-          type: object
-          properties:
-            ugent_id:
-              type: string
+          minimum: 1
+          maximum: 10
+        category_vigintile:
+          type: integer
+          minimum: 1
+          maximum: 20
+        total_cites:
+          type: integer
+          minimum: 0
+        immediacy_index:
+          type: number
+          minimum: 0
+        impact_factor:
+          type: number
+          minimum: 0
+        impact_factor_5year:
+          type: number
+          minimum: 0
+        eigenfactor:
+          type: number
+          minimum: 0
+        prev_impact_factor:
+          type: number
+          minimum: 0
+        prev_category_quartile:
+          type: integer
+          minimum: 1
+          maximum: 4
