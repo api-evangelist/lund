@@ -121,99 +121,6 @@ paths:
       - Publication
 components:
   schemas:
-    File:
-      type: object
-      required:
-      - _id
-      - content_type
-      - name
-      - access
-      properties:
-        _id:
-          type: string
-        content_type:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        access:
-          type: string
-          enum:
-          - openAccess
-          - lu
-          - admin
-        size:
-          type: integer
-          minimum: 1
-    Affiliation:
-      type: object
-      properties:
-        ugent_id:
-          type: string
-          description: LU organization id
-        path:
-          type: object
-          properties:
-            ugent_id:
-              type: string
-    HitAuthor:
-      type: object
-      description: An author as returned in a search hit.
-      properties:
-        fullName:
-          type: string
-        givenName:
-          type: string
-        surname:
-          type: string
-        uuid:
-          type: string
-        luLdapId:
-          type: string
-        orcid:
-          type: string
-        role:
-          type: string
-        affiliation:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    text:
-                      type: string
-                    lang:
-                      type: string
-              organizationNumber:
-                type: string
-              isExternal:
-                type: integer
-    SearchResult:
-      type: object
-      description: A page of publication search results.
-      properties:
-        total:
-          type: integer
-          description: Total number of publications matching the query.
-        size:
-          type: integer
-          description: Number of hits actually returned in this page.
-        start:
-          type: integer
-          description: Zero-based offset of the first returned hit.
-        limit:
-          type: integer
-          description: Maximum number of hits requested per page.
-        hits:
-          type: array
-          description: List of publication hits for this page.
-          items:
-            $ref: '#/components/schemas/PublicationHit'
     PublicationHit:
       type: object
       description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
@@ -344,6 +251,114 @@ components:
           type: string
         additionalInfo:
           type: object
+    HitAuthor:
+      type: object
+      description: An author as returned in a search hit.
+      properties:
+        fullName:
+          type: string
+        givenName:
+          type: string
+        surname:
+          type: string
+        uuid:
+          type: string
+        luLdapId:
+          type: string
+        orcid:
+          type: string
+        role:
+          type: string
+        affiliation:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    lang:
+                      type: string
+              organizationNumber:
+                type: string
+              isExternal:
+                type: integer
+    Affiliation:
+      type: object
+      properties:
+        ugent_id:
+          type: string
+          description: LU organization id
+        path:
+          type: object
+          properties:
+            ugent_id:
+              type: string
+    Person:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+          description: full name, first name first
+        name_last_first:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        ugent_id:
+          type: array
+          items:
+            type: string
+            pattern: ^\d{12}$
+        affiliation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Affiliation'
+    Jcr:
+      type: object
+      description: Journal Citation Reports info for the publication year.
+      properties:
+        category_quartile:
+          type: integer
+          minimum: 1
+          maximum: 4
+        category_decile:
+          type: integer
+          minimum: 1
+          maximum: 10
+        category_vigintile:
+          type: integer
+          minimum: 1
+          maximum: 20
+        total_cites:
+          type: integer
+          minimum: 0
+        immediacy_index:
+          type: number
+          minimum: 0
+        impact_factor:
+          type: number
+          minimum: 0
+        impact_factor_5year:
+          type: number
+          minimum: 0
+        eigenfactor:
+          type: number
+          minimum: 0
+        prev_impact_factor:
+          type: number
+          minimum: 0
+        prev_category_quartile:
+          type: integer
+          minimum: 1
+          maximum: 4
     Publication:
       type: object
       description: A LU publication as defined by the LUP publication JSON Schema (https://lup.lub.lu.se/search/schema/publication.json). Used for the single-record/export representation.
@@ -522,64 +537,49 @@ components:
           type: string
         date_approved:
           type: string
-    Person:
+    SearchResult:
       type: object
+      description: A page of publication search results.
+      properties:
+        total:
+          type: integer
+          description: Total number of publications matching the query.
+        size:
+          type: integer
+          description: Number of hits actually returned in this page.
+        start:
+          type: integer
+          description: Zero-based offset of the first returned hit.
+        limit:
+          type: integer
+          description: Maximum number of hits requested per page.
+        hits:
+          type: array
+          description: List of publication hits for this page.
+          items:
+            $ref: '#/components/schemas/PublicationHit'
+    File:
+      type: object
+      required:
+      - _id
+      - content_type
+      - name
+      - access
       properties:
         _id:
           type: string
+        content_type:
+          type: string
         name:
           type: string
-          description: full name, first name first
-        name_last_first:
+        description:
           type: string
-        first_name:
+        access:
           type: string
-        last_name:
-          type: string
-        ugent_id:
-          type: array
-          items:
-            type: string
-            pattern: ^\d{12}$
-        affiliation:
-          type: array
-          items:
-            $ref: '#/components/schemas/Affiliation'
-    Jcr:
-      type: object
-      description: Journal Citation Reports info for the publication year.
-      properties:
-        category_quartile:
+          enum:
+          - openAccess
+          - lu
+          - admin
+        size:
           type: integer
           minimum: 1
-          maximum: 4
-        category_decile:
-          type: integer
-          minimum: 1
-          maximum: 10
-        category_vigintile:
-          type: integer
-          minimum: 1
-          maximum: 20
-        total_cites:
-          type: integer
-          minimum: 0
-        immediacy_index:
-          type: number
-          minimum: 0
-        impact_factor:
-          type: number
-          minimum: 0
-        impact_factor_5year:
-          type: number
-          minimum: 0
-        eigenfactor:
-          type: number
-          minimum: 0
-        prev_impact_factor:
-          type: number
-          minimum: 0
-        prev_category_quartile:
-          type: integer
-          minimum: 1
-          maximum: 4
