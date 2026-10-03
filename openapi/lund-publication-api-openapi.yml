@@ -121,136 +121,42 @@ paths:
       - Publication
 components:
   schemas:
-    PublicationHit:
+    File:
       type: object
-      description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
+      required:
+      - _id
+      - content_type
+      - name
+      - access
       properties:
         _id:
           type: string
-        uuid:
+        content_type:
           type: string
-        mainTitle:
+        name:
           type: string
-        subtitle:
+        description:
           type: string
-        sortTitle:
+        access:
           type: string
-        abstract:
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                type: string
-              lang:
-                type: string
-        type:
-          type: string
-        documentType:
-          type: string
-        documentTypeFull:
-          type: string
-        documentSubtype:
-          type: string
-        lupType:
-          type: string
-        lupTypeFull:
-          type: string
-        lupSubtype:
-          type: string
-        subject:
-          type: array
-          items:
-            type: string
-        keyword:
-          type: array
-          items:
-            type: string
-        publication:
-          type: string
-        publisher:
-          type: string
-        publishingYear:
-          type: string
-        publishingDate:
-          type: string
-        publicationStatus:
-          type: string
-        submissionStatus:
-          type: string
-        peerReviewed:
-          type: boolean
-        openAccess:
+          enum:
+          - openAccess
+          - lu
+          - admin
+        size:
           type: integer
-        isNonLuPublication:
-          type: boolean
-        language:
-          type: array
-          items:
-            type: string
-        issn:
-          type: array
-          items:
-            type: string
-        volume:
+          minimum: 1
+    Affiliation:
+      type: object
+      properties:
+        ugent_id:
           type: string
-        issue:
-          type: string
-        articleNumber:
-          type: string
-        pagesStart:
-          type: string
-        pagesEnd:
-          type: string
-        portalUrl:
-          type: string
-          format: uri
-        doiInfo:
+          description: LU organization id
+        path:
           type: object
-        externalIdentifier:
-          type: array
-          items:
-            type: object
-        totalNumberOfAuthors:
-          type: integer
-        author:
-          type: array
-          items:
-            $ref: '#/components/schemas/HitAuthor'
-        first_author:
-          $ref: '#/components/schemas/HitAuthor'
-        last_author:
-          $ref: '#/components/schemas/HitAuthor'
-        contributor_id:
-          type: array
-          items:
-            type: string
-        department:
-          type: array
-          items:
-            type: object
-        researchGroup:
-          type: array
-          items:
-            type: object
-        record_fulltext_access:
-          type: string
-        dateCreated:
-          type: string
-        dateLastChanged:
-          type: string
-        dateFirstPublic:
-          type: string
-        dateApproved:
-          type: string
-        datePureModified:
-          type: string
-        oai_datestamp:
-          type: string
-        digest:
-          type: string
-        additionalInfo:
-          type: object
+          properties:
+            ugent_id:
+              type: string
     HitAuthor:
       type: object
       description: An author as returned in a search hit.
@@ -287,40 +193,6 @@ components:
                 type: string
               isExternal:
                 type: integer
-    Affiliation:
-      type: object
-      properties:
-        ugent_id:
-          type: string
-          description: LU organization id
-        path:
-          type: object
-          properties:
-            ugent_id:
-              type: string
-    Person:
-      type: object
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-          description: full name, first name first
-        name_last_first:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        ugent_id:
-          type: array
-          items:
-            type: string
-            pattern: ^\d{12}$
-        affiliation:
-          type: array
-          items:
-            $ref: '#/components/schemas/Affiliation'
     Jcr:
       type: object
       description: Journal Citation Reports info for the publication year.
@@ -558,28 +430,156 @@ components:
           description: List of publication hits for this page.
           items:
             $ref: '#/components/schemas/PublicationHit'
-    File:
+    Person:
       type: object
-      required:
-      - _id
-      - content_type
-      - name
-      - access
       properties:
         _id:
           type: string
-        content_type:
-          type: string
         name:
           type: string
-        description:
+          description: full name, first name first
+        name_last_first:
           type: string
-        access:
+        first_name:
           type: string
-          enum:
-          - openAccess
-          - lu
-          - admin
-        size:
+        last_name:
+          type: string
+        ugent_id:
+          type: array
+          items:
+            type: string
+            pattern: ^\d{12}$
+        affiliation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Affiliation'
+    PublicationHit:
+      type: object
+      description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
+      properties:
+        _id:
+          type: string
+        uuid:
+          type: string
+        mainTitle:
+          type: string
+        subtitle:
+          type: string
+        sortTitle:
+          type: string
+        abstract:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              lang:
+                type: string
+        type:
+          type: string
+        documentType:
+          type: string
+        documentTypeFull:
+          type: string
+        documentSubtype:
+          type: string
+        lupType:
+          type: string
+        lupTypeFull:
+          type: string
+        lupSubtype:
+          type: string
+        subject:
+          type: array
+          items:
+            type: string
+        keyword:
+          type: array
+          items:
+            type: string
+        publication:
+          type: string
+        publisher:
+          type: string
+        publishingYear:
+          type: string
+        publishingDate:
+          type: string
+        publicationStatus:
+          type: string
+        submissionStatus:
+          type: string
+        peerReviewed:
+          type: boolean
+        openAccess:
           type: integer
-          minimum: 1
+        isNonLuPublication:
+          type: boolean
+        language:
+          type: array
+          items:
+            type: string
+        issn:
+          type: array
+          items:
+            type: string
+        volume:
+          type: string
+        issue:
+          type: string
+        articleNumber:
+          type: string
+        pagesStart:
+          type: string
+        pagesEnd:
+          type: string
+        portalUrl:
+          type: string
+          format: uri
+        doiInfo:
+          type: object
+        externalIdentifier:
+          type: array
+          items:
+            type: object
+        totalNumberOfAuthors:
+          type: integer
+        author:
+          type: array
+          items:
+            $ref: '#/components/schemas/HitAuthor'
+        first_author:
+          $ref: '#/components/schemas/HitAuthor'
+        last_author:
+          $ref: '#/components/schemas/HitAuthor'
+        contributor_id:
+          type: array
+          items:
+            type: string
+        department:
+          type: array
+          items:
+            type: object
+        researchGroup:
+          type: array
+          items:
+            type: object
+        record_fulltext_access:
+          type: string
+        dateCreated:
+          type: string
+        dateLastChanged:
+          type: string
+        dateFirstPublic:
+          type: string
+        dateApproved:
+          type: string
+        datePureModified:
+          type: string
+        oai_datestamp:
+          type: string
+        digest:
+          type: string
+        additionalInfo:
+          type: object
