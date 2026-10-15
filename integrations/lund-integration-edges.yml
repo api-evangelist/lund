@@ -1,0 +1,59 @@
+edges:
+- partner_name: eduGAIN
+  partner: null
+  type: register
+  channel: standard-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+  category: research and education identity federation
+  contract_reference:
+    network: eduGAIN (GÉANT interfederation)
+    spec_file: null
+    roles:
+    - identity-provider
+    - service-provider
+    role: identity-and-service-provider
+    federations:
+    - SWAMID
+    matched_by: domain:lu.se
+    entities:
+    - entity_id: https://idpv4.lu.se/idp/shibboleth
+      role: identity-provider
+      federation: SWAMID
+      display_name: Lund University
+      entity_categories:
+      - '11'
+      - '67'
+      - '71'
+      - '76'
+      - '129'
+      - '183'
+      - '190'
+      - '192'
+      - '193'
+      - '194'
+      - '198'
+      sirtfi: true
+      coco: false
+    - entity_id: http://canvas.education.lu.se/saml2
+      role: service-provider
+      federation: SWAMID
+      display_name: Lund University
+      entity_categories:
+      - '1'
+      - '5'
+      - '76'
+      - '188'
+      - '198'
+      sirtfi: true
+      coco: true
+    detected_by: sweep-higher-ed.py
+    detected: '2026-10-15'
+  detected_by: sweep-higher-ed.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+- https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json
