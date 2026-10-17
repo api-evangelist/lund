@@ -121,27 +121,42 @@ paths:
       - Publication
 components:
   schemas:
-    SearchResult:
+    HitAuthor:
       type: object
-      description: A page of publication search results.
+      description: An author as returned in a search hit.
       properties:
-        total:
-          type: integer
-          description: Total number of publications matching the query.
-        size:
-          type: integer
-          description: Number of hits actually returned in this page.
-        start:
-          type: integer
-          description: Zero-based offset of the first returned hit.
-        limit:
-          type: integer
-          description: Maximum number of hits requested per page.
-        hits:
+        fullName:
+          type: string
+        givenName:
+          type: string
+        surname:
+          type: string
+        uuid:
+          type: string
+        luLdapId:
+          type: string
+        orcid:
+          type: string
+        role:
+          type: string
+        affiliation:
           type: array
-          description: List of publication hits for this page.
           items:
-            $ref: '#/components/schemas/PublicationHit'
+            type: object
+            properties:
+              name:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    lang:
+                      type: string
+              organizationNumber:
+                type: string
+              isExternal:
+                type: integer
     PublicationHit:
       type: object
       description: A publication as returned by the search endpoint. Fields reflect the live JSON response shape, which differs from the export/record schema.
@@ -272,6 +287,29 @@ components:
           type: string
         additionalInfo:
           type: object
+    Person:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+          description: full name, first name first
+        name_last_first:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        ugent_id:
+          type: array
+          items:
+            type: string
+            pattern: ^\d{12}$
+        affiliation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Affiliation'
     Jcr:
       type: object
       description: Journal Citation Reports info for the publication year.
@@ -310,65 +348,6 @@ components:
           type: integer
           minimum: 1
           maximum: 4
-    HitAuthor:
-      type: object
-      description: An author as returned in a search hit.
-      properties:
-        fullName:
-          type: string
-        givenName:
-          type: string
-        surname:
-          type: string
-        uuid:
-          type: string
-        luLdapId:
-          type: string
-        orcid:
-          type: string
-        role:
-          type: string
-        affiliation:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    text:
-                      type: string
-                    lang:
-                      type: string
-              organizationNumber:
-                type: string
-              isExternal:
-                type: integer
-    Person:
-      type: object
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-          description: full name, first name first
-        name_last_first:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        ugent_id:
-          type: array
-          items:
-            type: string
-            pattern: ^\d{12}$
-        affiliation:
-          type: array
-          items:
-            $ref: '#/components/schemas/Affiliation'
     Affiliation:
       type: object
       properties:
@@ -558,6 +537,27 @@ components:
           type: string
         date_approved:
           type: string
+    SearchResult:
+      type: object
+      description: A page of publication search results.
+      properties:
+        total:
+          type: integer
+          description: Total number of publications matching the query.
+        size:
+          type: integer
+          description: Number of hits actually returned in this page.
+        start:
+          type: integer
+          description: Zero-based offset of the first returned hit.
+        limit:
+          type: integer
+          description: Maximum number of hits requested per page.
+        hits:
+          type: array
+          description: List of publication hits for this page.
+          items:
+            $ref: '#/components/schemas/PublicationHit'
     File:
       type: object
       required:
